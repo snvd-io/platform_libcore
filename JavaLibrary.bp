@@ -284,6 +284,7 @@ java_library {
     visibility: [
         "//art/build/apex",
         "//art/build/sdk",
+        "//art/tools/fuzzer",
         "//external/wycheproof",
         "//libcore/benchmarks",
         "//packages/modules/ArtPrebuilt",
@@ -346,6 +347,7 @@ java_library {
     visibility: [
         "//art/build/apex",
         "//art/build/sdk",
+        "//art/tools/fuzzer",
         "//external/wycheproof",
         "//libcore/benchmarks",
         "//packages/modules/ArtPrebuilt",
