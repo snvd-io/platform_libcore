@@ -143,6 +143,11 @@ public final class Daemons {
             }
             try {
                 runInternal();
+                // This thread is about to exit, and we may have to wait for it to do so.
+                // Terminate the underlying system thread as quickly as possible.
+                // Mirroring setSystemDaemonThreadPriority, we only touch the native priority,
+                // bypassing the rest of setPriority().
+                Thread.currentThread().setPriority0(Thread.MAX_PRIORITY);
             } catch (Throwable ex) {
                 // Should never happen, but may not o.w. get reported, e.g. in zygote.
                 // Risk logging redundantly, rather than losing it.
@@ -151,6 +156,9 @@ public final class Daemons {
             }
         }
 
+        /*
+         * Do the actual work. Returns normally when asked to stop.
+         */
         public abstract void runInternal();
 
         /**
