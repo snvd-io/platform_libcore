@@ -120,9 +120,11 @@ public class RandomGeneratorFactoryTest {
     @Test
     public void isDeprecated_consistency() {
         RandomGeneratorFactory.all().forEach(factory -> {
-            var rng = factory.create();
+            RandomGenerator rng = factory.create();
             var msg = factory.name() + " created deprecated RandomGenerator";
+
             assertFalse(msg, rng.isDeprecated());
+            assertFalse(msg, factory.isDeprecated());
         });
     }
 
