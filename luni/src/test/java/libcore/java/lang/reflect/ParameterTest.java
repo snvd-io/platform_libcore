@@ -16,11 +16,17 @@
 
 package libcore.java.lang.reflect;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import dalvik.system.PathClassLoader;
 
 import libcore.io.Streams;
-
-import junit.framework.TestCase;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,6 +46,13 @@ import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+
 /**
  * Tests for {@link Parameter}. For annotation-related tests see
  * {@link libcore.java.lang.reflect.annotations.AnnotatedElementParameterTest} and
@@ -49,7 +62,8 @@ import java.util.function.Function;
  * These are handled by loading pre-compiled .dex files.
  * See also {@link DependsOnParameterMetadata}.
  */
-public class ParameterTest extends TestCase {
+@RunWith(JUnit4.class)
+public class ParameterTest {
 
     /**
      * A ClassLoader that can be used to load the
@@ -67,9 +81,8 @@ public class ParameterTest extends TestCase {
      */
     private ClassLoader metadataVariationsClassLoader;
 
-    @Override
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         File tempDir = File.createTempFile("tempDir", "");
         assertTrue(tempDir.delete());
         assertTrue(tempDir.mkdirs());
@@ -106,11 +119,13 @@ public class ParameterTest extends TestCase {
         void oneParameter(String p0) {}
     }
 
+    @Test
     public void testSingleParameterConstructor() throws Exception {
         Constructor<?> constructor = SingleParameter.class.getDeclaredConstructor(String.class);
         checkSingleStringParameter(constructor);
     }
 
+    @Test
     public void testSingleParameterMethod() throws Exception {
         Method method = SingleParameter.class.getDeclaredMethod("oneParameter", String.class);
         checkSingleStringParameter(method);
@@ -128,12 +143,14 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class java.lang.String");
     }
 
+    @Test
     public void testSingleParameterConstructor_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("SingleParameter");
         Constructor<?> constructor  = clazz.getDeclaredConstructor(String.class);
         checkSingleStringParameter_withMetadata(constructor);
     }
 
+    @Test
     public void testSingleParameterMethod_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("SingleParameter");
         Method method = clazz.getDeclaredMethod("oneParameter", String.class);
@@ -162,11 +179,13 @@ public class ParameterTest extends TestCase {
         void genericParameter(Function<String, Integer> p0) {}
     }
 
+    @Test
     public void testGenericParameterConstructor() throws Exception {
         Constructor<?> constructor = GenericParameter.class.getDeclaredConstructor(Function.class);
         checkGenericParameter(constructor);
     }
 
+    @Test
     public void testGenericParameterMethod() throws Exception {
         Method method = GenericParameter.class.getDeclaredMethod(
                 "genericParameter", Function.class);
@@ -187,12 +206,14 @@ public class ParameterTest extends TestCase {
                         "java.util.function.Function<java.lang.String, java.lang.Integer>");
     }
 
+    @Test
     public void testGenericParameterConstructor_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("GenericParameter");
         Constructor<?> constructor = clazz.getDeclaredConstructor(Function.class);
         checkGenericParameter_withMetadata(constructor);
     }
 
+    @Test
     public void testGenericParameterMethod_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("GenericParameter");
         Method method = clazz.getDeclaredMethod("genericParameter", Function.class);
@@ -222,12 +243,14 @@ public class ParameterTest extends TestCase {
         void twoParameters(String p0, Integer p1) {}
     }
 
+    @Test
     public void testTwoParameterConstructor() throws Exception {
         Constructor<?> constructor =
                 TwoParameters.class.getDeclaredConstructor(String.class, Integer.class);
         checkTwoParameters(constructor);
     }
 
+    @Test
     public void testTwoParameterMethod() throws Exception {
         Method method = TwoParameters.class.getDeclaredMethod(
                 "twoParameters", String.class, Integer.class);
@@ -250,12 +273,14 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class java.lang.Integer");
     }
 
+    @Test
     public void testTwoParameterConstructor_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("TwoParameters");
         Constructor<?> constructor = clazz.getDeclaredConstructor(String.class, Integer.class);
         checkTwoParameters_withMetadata(constructor);
     }
 
+    @Test
     public void testTwoParameterMethod_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("TwoParameters");
         Method method = clazz.getDeclaredMethod("twoParameters", String.class, Integer.class);
@@ -290,11 +315,13 @@ public class ParameterTest extends TestCase {
         void finalParameter(final String p0) {}
     }
 
+    @Test
     public void testFinalParameterConstructor() throws Exception {
         Constructor<?> constructor = FinalParameter.class.getDeclaredConstructor(String.class);
         checkFinalParameter(constructor);
     }
 
+    @Test
     public void testFinalParameterMethod() throws Exception {
         Method method = FinalParameter.class.getDeclaredMethod("finalParameter", String.class);
         checkFinalParameter(method);
@@ -312,12 +339,14 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class java.lang.String");
     }
 
+    @Test
     public void testFinalParameterConstructor_withMetdata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("FinalParameter");
         Constructor<?> constructor = clazz.getDeclaredConstructor(String.class);
         checkFinalParameter_withMetadata(constructor);
     }
 
+    @Test
     public void testFinalParameterMethod_withMetdata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("FinalParameter");
         Method method = clazz.getDeclaredMethod("finalParameter", String.class);
@@ -351,6 +380,8 @@ public class ParameterTest extends TestCase {
         public InnerClass(Function<String, Integer> p1) {}
     }
 
+    @Ignore("b/328705542")
+    @Test
     public void testInnerClassSingleParameter() throws Exception {
         Class<?> outerClass = ParameterTest.class;
         Class<?> innerClass = InnerClass.class;
@@ -367,6 +398,7 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
     }
 
+    @Test
     public void testInnerClassSingleParameter_withMetadata() throws Exception {
         Class<?> outerClass = loadTestOuterClassWithMetadata();
         Class<?> innerClass = loadTestInnerClassWithMetadata("InnerClass");
@@ -385,6 +417,8 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class " + outerClass.getName());
     }
 
+    @Ignore("b/328705542")
+    @Test
     public void testInnerClassTwoParameters() throws Exception {
         Class<?> outerClass = ParameterTest.class;
         Class<?> innerClass = InnerClass.class;
@@ -406,6 +440,7 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class java.lang.String");
     }
 
+    @Test
     public void testInnerClassTwoParameters_withMetadata() throws Exception {
         Class<?> outerClass = loadTestOuterClassWithMetadata();
         Class<?> innerClass = loadTestInnerClassWithMetadata("InnerClass");
@@ -432,6 +467,8 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class java.lang.String");
     }
 
+    @Ignore("b/328705542")
+    @Test
     public void testInnerClassGenericParameter() throws Exception {
         Class<?> outerClass = ParameterTest.class;
         Class<?> innerClass = InnerClass.class;
@@ -459,6 +496,7 @@ public class ParameterTest extends TestCase {
         // information.
     }
 
+    @Test
     public void testInnerClassGenericParameter_withMetadata() throws Exception {
         Class<?> outerClass = loadTestOuterClassWithMetadata();
         Class<?> innerClass = loadTestInnerClassWithMetadata("InnerClass");
@@ -494,6 +532,8 @@ public class ParameterTest extends TestCase {
      * generated methods. This test may be brittle as it may rely on the compiler's implementation
      * of enums.
      */
+    @Ignore("b/328705542")
+    @Test
     public void testEnumConstructor() throws Exception {
         Constructor<?> constructor = TestEnum.class.getDeclaredConstructor(String.class, int.class);
 
@@ -511,6 +551,7 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("int");
     }
 
+    @Test
     public void testEnumConstructor_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("TestEnum");
         Constructor<?> constructor = clazz.getDeclaredConstructor(String.class, int.class);
@@ -538,6 +579,8 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("int");
     }
 
+    @Ignore("b/328705542")
+    @Test
     public void testEnumValueOf() throws Exception {
         Method method = TestEnum.class.getDeclaredMethod("valueOf", String.class);
 
@@ -552,6 +595,7 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class java.lang.String");
     }
 
+    @Test
     public void testEnumValueOf_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("TestEnum");
         Method method = clazz.getDeclaredMethod("valueOf", String.class);
@@ -580,11 +624,13 @@ public class ParameterTest extends TestCase {
         void varArgs(String... p0) {}
     }
 
+    @Test
     public void testSingleVarArgsConstructor() throws Exception {
         Constructor<?> constructor = SingleVarArgs.class.getDeclaredConstructor(String[].class);
         checkSingleVarArgsParameter(constructor);
     }
 
+    @Test
     public void testSingleVarArgsMethod() throws Exception {
         Method method = SingleVarArgs.class.getDeclaredMethod("varArgs", String[].class);
         checkSingleVarArgsParameter(method);
@@ -602,12 +648,14 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class [Ljava.lang.String;");
     }
 
+    @Test
     public void testSingleVarArgsConstructor_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("SingleVarArgs");
         Constructor<?> constructor = clazz.getDeclaredConstructor(String[].class);
         checkSingleVarArgsParameter_withMetadata(constructor);
     }
 
+    @Test
     public void testSingleVarArgsMethod_withMetadata() throws Exception {
         Class<?> clazz = loadTestInnerClassWithMetadata("SingleVarArgs");
         Method method = clazz.getDeclaredMethod("varArgs", String[].class);
@@ -635,12 +683,14 @@ public class ParameterTest extends TestCase {
         void both(Integer[] p0, String... p1) {}
     }
 
+    @Test
     public void testMixedVarArgsConstructor() throws Exception {
         Constructor<?> constructor =
                 MixedVarArgs.class.getDeclaredConstructor(Integer[].class, String[].class);
         checkMixedVarArgsParameter(constructor);
     }
 
+    @Test
     public void testMixedVarArgsMethod() throws Exception {
         Method method = MixedVarArgs.class.getDeclaredMethod("both", Integer[].class, String[].class);
         checkMixedVarArgsParameter(method);
@@ -670,11 +720,13 @@ public class ParameterTest extends TestCase {
         void notVarArgs(Integer[] p0) {}
     }
 
+    @Test
     public void testNonVarsArgsConstructor() throws Exception {
         Constructor<?> constructor = NonVarArgs.class.getDeclaredConstructor(Integer[].class);
         checkNonVarsArgsParameter(constructor);
     }
 
+    @Test
     public void testNonVarsArgsMethod() throws Exception {
         Method method = NonVarArgs.class.getDeclaredMethod("notVarArgs", Integer[].class);
         checkNonVarsArgsParameter(method);
@@ -692,6 +744,8 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class [Ljava.lang.Integer;");
     }
 
+    @Ignore("b/328705542")
+    @Test
     public void testAnonymousClassConstructor() throws Exception {
         Class<?> outerClass = ParameterTest.class;
         Class<?> innerClass = getAnonymousClassWith1ParameterConstructor();
@@ -719,6 +773,7 @@ public class ParameterTest extends TestCase {
         return anonymousClassObject.getClass();
     }
 
+    @Test
     public void testAnonymousClassConstructor_withMetadata() throws Exception {
         Class<?> outerClass = loadTestOuterClassWithMetadata();
         Object outer = outerClass.newInstance();
@@ -739,6 +794,8 @@ public class ParameterTest extends TestCase {
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
     }
 
+    @Ignore("b/328705542")
+    @Test
     public void testMethodClassConstructor() throws Exception {
         Class<?> outerClass = ParameterTest.class;
         Class<?> innerClass = getMethodClassWith1ImplicitParameterConstructor();
@@ -764,6 +821,7 @@ public class ParameterTest extends TestCase {
         return MethodClass.class;
     }
 
+    @Test
     public void testMethodClassConstructor_withMetadata() throws Exception {
         Class<?> outerClass = loadTestOuterClassWithMetadata();
         Object outer = outerClass.newInstance();
@@ -791,6 +849,7 @@ public class ParameterTest extends TestCase {
         void method1(String p0) {}
     }
 
+    @Test
     public void testEquals_checksExecutable() throws Exception {
         Method method0 = NonIdenticalParameters.class.getDeclaredMethod("method0", String.class);
         Method method1 = NonIdenticalParameters.class.getDeclaredMethod("method1", String.class);
@@ -801,6 +860,7 @@ public class ParameterTest extends TestCase {
         assertTrue(method0P0.equals(method0P0));
     }
 
+    @Test
     public void testManyParameters_withMetadata() throws Exception {
         int expectedParameterCount = 300;
         Class<?>[] parameterTypes = new Class[expectedParameterCount];
@@ -818,42 +878,50 @@ public class ParameterTest extends TestCase {
         }
     }
 
+    @Test
     public void testEmptyMethodParametersAnnotation_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("emptyMethodParametersAnnotation");
         assertEquals(0, method.getParameters().length);
     }
 
+    @Test
     public void testTooManyAccessFlags_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("tooManyAccessFlags", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testTooFewAccessFlags_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod(
                 "tooFewAccessFlags", String.class, String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testTooManyNames_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("tooManyNames", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testTooFewNames_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("tooFewNames", String.class, String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testTooManyBoth_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("tooManyBoth", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testTooFewBoth_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("tooFewBoth", String.class, String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testNullName_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("nullName", String.class);
         Parameter parameter0 = method.getParameters()[0];
@@ -861,36 +929,43 @@ public class ParameterTest extends TestCase {
         assertEquals(Modifier.FINAL, parameter0.getModifiers());
     }
 
+    @Test
     public void testEmptyName_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("emptyName", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testNameWithSemicolon_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("nameWithSemicolon", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testNameWithSlash_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("nameWithSlash", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testNameWithPeriod_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("nameWithPeriod", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testNameWithOpenSquareBracket_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("nameWithOpenSquareBracket", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testBadAccessModifier_withMetadata() throws Exception {
         Method method = getMetadataVariationsMethod("badAccessModifier", String.class);
         checkGetParametersThrowsMalformedParametersException(method);
     }
 
+    @Test
     public void testBadlyFormedAnnotation() throws Exception {
         Method method = getMetadataVariationsMethod("badlyFormedAnnotation", String.class);
         // Badly formed annotations are treated as if the annotation is entirely absent.
