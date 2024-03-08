@@ -92,6 +92,13 @@ public class MultiplicationTests {
             (a,b) -> Math.unsignedMultiplyHigh(a, b), x, y);
     }
 
+    // Android-added: Test functionally-equivalent StrictMath version.
+    // Check StrictMath.unsignedMultiplyHigh(x,y) against unsignedMultiplyHigh(x,y)
+    private static boolean checkStrictMathUnsigned(long x, long y) {
+        return check((a,b) -> unsignedMultiplyHigh(a,b),
+                (a,b) -> StrictMath.unsignedMultiplyHigh(a, b), x, y);
+    }
+
     private static int test(BiFunction<Long,Long,Boolean> chk) {
         int failures = 0;
 
@@ -135,7 +142,9 @@ public class MultiplicationTests {
     }
 
     private static int testUnsignedMultiplyHigh() {
-        return test((x,y) -> checkUnsigned(x,y));
+        return test((x,y) -> checkUnsigned(x,y)
+                // Android-added: Test functionally-equivalent StrictMath version.
+                && checkStrictMathUnsigned(x,y));
     }
 
     public static void main(String argv[]) {
