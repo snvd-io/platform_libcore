@@ -400,6 +400,13 @@ public class ExactArithTests {
                     "; expected ArithmeticException not thrown");
             }
             checkResult("long Math.divideExact", x, y, quotient, resultBig);
+            // Android-added: Test functionally-equivalent StrictMath version.
+            long quotient2 = StrictMath.divideExact(x, y);
+            if (quotient2 != quotient) {
+                fail("FAIL: long StrictMath.divideExact(" + x + " / " + y + ")" +
+                        "; expected " + quotient + " but got " + quotient2);
+            }
+            checkResult("long StrictMath.divideExact", x, y, quotient2, resultBig);
         } catch (ArithmeticException ex) {
             if (resultBig != null && inLongRange(resultBig)) {
                 fail("FAIL: long Math.divideExact(" + x + " / " + y + ")" +
