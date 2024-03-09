@@ -21,6 +21,7 @@ container: "system"
 flag {
     namespace: "core_libraries"
     name: "v_apis"
+    is_exported: true
     description: "This flag controls whether exposing Android V APIs"
     bug: "306360493"
     # APIs provided by a mainline module can only use a frozen flag.
@@ -30,6 +31,7 @@ flag {
 flag {
     namespace: "core_libraries"
     name: "hpke_v_apis"
+    is_exported: true
     description: "This flag controls whether exposing HPKE APIs on Android V"
     bug: "323357598"
     # APIs provided by a mainline module can only use a frozen flag.
