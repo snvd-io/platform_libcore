@@ -102,6 +102,7 @@ java_test {
             "-Xep:ModifyingCollectionWithItself:WARN",
             "-Xep:InvalidZoneId:WARN",
             "-Xep:HashtableContains:WARN",
+            "-Xep:EqualsNull:WARN",
         ],
     },
 }
@@ -176,6 +177,7 @@ java_test {
             "-Xep:ModifyingCollectionWithItself:WARN",
             "-Xep:InvalidZoneId:WARN",
             "-Xep:HashtableContains:WARN",
+            "-Xep:EqualsNull:WARN",
         ],
     },
 }
