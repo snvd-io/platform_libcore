@@ -90,15 +90,6 @@ class ZipCoder {
         }
     }
 
-    // Android-added: this method is from OpenJDK 8, needed while ZipFile
-    // is not updated.
-    // assume invoked only if "this" is not utf8
-    byte[] getBytesUTF8(String s) {
-        if (isUTF8())
-            return getBytes(s);
-        return UTF8.getBytes(s);
-    }
-
     static String toStringUTF8(byte[] ba, int len) {
         return UTF8.toString(ba, 0, len);
     }
