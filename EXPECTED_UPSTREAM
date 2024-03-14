@@ -1261,7 +1261,6 @@ ojluni/src/main/java/java/util/zip/GZIPOutputStream.java,jdk17u/jdk-17.0.6-ga,sr
 ojluni/src/main/java/java/util/zip/Inflater.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/zip/Inflater.java
 ojluni/src/main/java/java/util/zip/InflaterInputStream.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/zip/InflaterInputStream.java
 ojluni/src/main/java/java/util/zip/InflaterOutputStream.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/zip/InflaterOutputStream.java
-ojluni/src/main/java/java/util/zip/ZStreamRef.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/util/zip/ZStreamRef.java
 ojluni/src/main/java/java/util/zip/ZipCoder.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/zip/ZipCoder.java
 ojluni/src/main/java/java/util/zip/ZipConstants.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/zip/ZipConstants.java
 ojluni/src/main/java/java/util/zip/ZipConstants64.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/zip/ZipConstants64.java
