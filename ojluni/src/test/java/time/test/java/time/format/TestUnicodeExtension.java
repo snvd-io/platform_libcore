@@ -155,9 +155,7 @@ public class TestUnicodeExtension {
             },
 
             {RG_GB, null, null, ISO, null,
-            // Android-changed: Android doesn't support "rg" extension yet.
-            // "Thursday, 10 August 2017 at 15:15:00 Pacific Daylight Time"
-            "Thursday, August 10, 2017 at 3:15:00" + AM_PM_SPACE_CHAR + "PM Pacific Daylight Time"
+            "Thursday, August 10, 2017 at 15:15:00 Pacific Daylight Time"
             },
 
             // DecimalStyle
@@ -249,9 +247,7 @@ public class TestUnicodeExtension {
             },
 
             {RG_GB, null, null, null, null,
-            // Android-changed: Android doesn't support "rg" extension yet.
-            // "Thursday, 10 August 2017 at 15:15:00 Pacific Daylight Time"
-            "Thursday, August 10, 2017 at 3:15:00" + AM_PM_SPACE_CHAR + "PM Pacific Daylight Time"
+            "Thursday, August 10, 2017 at 15:15:00 Pacific Daylight Time"
             },
 
             // DecimalStyle
@@ -323,7 +319,9 @@ public class TestUnicodeExtension {
             // "fw" and "rg".
             {Locale.forLanguageTag("en-US-u-fw-wed-rg-gbzzzz"), DayOfWeek.WEDNESDAY},
             {Locale.forLanguageTag("en-US-u-fw-xxx-rg-gbzzzz"), DayOfWeek.MONDAY},
-            {Locale.forLanguageTag("en-US-u-fw-xxx-rg-zzzz"), DayOfWeek.SUNDAY},
+            // Android-removed: Upstream expects Sunday because en-US, but ICU4J expects Monday
+            // because of -u-fw-xxx-rg-zzzz, which seems to be invalid fw and rg extension values.
+            // {Locale.forLanguageTag("en-US-u-fw-xxx-rg-zzzz"), DayOfWeek.SUNDAY},
         };
     }
 
@@ -844,7 +842,7 @@ public class TestUnicodeExtension {
                                 Chronology chronoExpected, ZoneId zoneExpected,
                                 String formatExpected) {
         // Skip this test if older ICU provides the locale data.
-        if (VersionInfo.ICU_VERSION.getMajor() < 72) {
+        if (VersionInfo.ICU_VERSION.getMajor() < 74) {
             return;
         }
         // try this test both with the implicit default locale, and explicit default locale ja-JP
@@ -874,7 +872,7 @@ public class TestUnicodeExtension {
                                 Chronology chronoExpected, ZoneId zoneExpected,
                                 String formatExpected) {
         // Skip this test if older ICU provides the locale data.
-        if (VersionInfo.ICU_VERSION.getMajor() < 72) {
+        if (VersionInfo.ICU_VERSION.getMajor() < 74) {
             return;
         }
         DateTimeFormatter dtf =
@@ -883,9 +881,10 @@ public class TestUnicodeExtension {
         assertEquals(dtf.getChronology(), chronoExpected);
         assertEquals(dtf.getZone(), zoneExpected);
         String formatted = dtf.format(ZDT);
-        assertEquals(formatted, formatExpected);
+        // Android-changed: print locale.toString() in case of the test failure.
+        assertEquals(formatted, formatExpected, locale.toString());
         assertEquals(dtf.parse(formatted, ZonedDateTime::from),
-            zoneExpected != null ? ZDT.withZoneSameInstant(zoneExpected) : ZDT);
+            zoneExpected != null ? ZDT.withZoneSameInstant(zoneExpected) : ZDT, locale.toString());
     }
 
     @Test(dataProvider="firstDayOfWeek")
