@@ -26,6 +26,7 @@ import android.system.StructCmsghdr;
 import android.system.StructMsghdr;
 import android.system.StructRlimit;
 import android.system.StructStat;
+import android.system.StructTimespec;
 import android.system.StructTimeval;
 import android.system.StructUcred;
 import android.system.UnixSocketAddress;
@@ -1736,6 +1737,19 @@ public class OsTest {
     }
 
     @Test
+    public void test_build_sruct_stat() {
+      StructStat structStat1 = new StructStat(/*st_dev*/ 0L, /*st_ino*/ 0L, /*st_mode*/ 0,
+          /*st_nlink*/ 1L, /*st_uid*/ 1000, /*st_gid*/ 1000, /*st_rdev*/ 0L, /*st_size*/ 0L,
+          /*st_atime*/ 0L, /*st_mtime*/ 0L, /*st_ctime*/ 0L, /*st_blksize*/ 4096L,
+          /*st_blocks*/ 1L);
+      StructStat structStat2 = new StructStat(/*st_dev*/ 0L, /*st_ino*/ 0L, /*st_mode*/ 0,
+          /*st_nlink*/ 1L, /*st_uid*/ 1000, /*st_gid*/ 1000, /*st_rdev*/ 0L, /*st_size*/ 0L,
+          /*st_atim*/ new StructTimespec(0L, 0L), /*st_mtim*/ new StructTimespec(0L, 0L),
+          /*st_ctim*/ new StructTimespec(0L, 0L), /*st_blksize*/ 4096L, /*st_blocks*/ 1L);
+      assertStructStatsEqual(structStat1, structStat2);
+    }
+
+    @Test
     public void test_getrlimit() throws Exception {
         StructRlimit rlimit = Os.getrlimit(OsConstants.RLIMIT_NOFILE);
         // We can't really make any assertions about these values since they might vary from
@@ -2068,5 +2082,24 @@ public class OsTest {
 
         expectException(() -> Os.memfd_create("test_memfd", 0xffff), ErrnoException.class, EINVAL,
                 "memfd_create(\"test_memfd\", 0xffff)");
+    }
+
+    private static void assertStructStatsEqual(StructStat expected, StructStat actual) {
+        assertEquals(expected.st_dev, actual.st_dev);
+        assertEquals(expected.st_ino, actual.st_ino);
+        assertEquals(expected.st_mode, actual.st_mode);
+        assertEquals(expected.st_nlink, actual.st_nlink);
+        assertEquals(expected.st_uid, actual.st_uid);
+        assertEquals(expected.st_gid, actual.st_gid);
+        assertEquals(expected.st_rdev, actual.st_rdev);
+        assertEquals(expected.st_size, actual.st_size);
+        assertEquals(expected.st_atime, actual.st_atime);
+        assertEquals(expected.st_atim, actual.st_atim);
+        assertEquals(expected.st_mtime, actual.st_mtime);
+        assertEquals(expected.st_mtim, actual.st_mtim);
+        assertEquals(expected.st_ctime, actual.st_ctime);
+        assertEquals(expected.st_ctim, actual.st_ctim);
+        assertEquals(expected.st_blksize, actual.st_blksize);
+        assertEquals(expected.st_blocks, actual.st_blocks);
     }
 }
