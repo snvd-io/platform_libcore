@@ -27,7 +27,7 @@ package {
 }
 
 filegroup {
-    name: "art.module.intra.core.api.api.public.latest",
+    name: "art.module.intra.core.api.api.combined.public.latest",
     srcs: [
         "api/intra/last-api.txt",
     ],
@@ -35,7 +35,7 @@ filegroup {
 
 // Referenced implicitly from art.module.intra.core.api.
 filegroup {
-    name: "art.module.intra.core.api-removed.api.public.latest",
+    name: "art.module.intra.core.api-removed.api.combined.public.latest",
     srcs: [
         "api/intra/last-removed.txt",
     ],
