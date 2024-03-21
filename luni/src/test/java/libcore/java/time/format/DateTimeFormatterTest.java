@@ -115,4 +115,11 @@ public class DateTimeFormatterTest {
             .withZone(ZoneOffset.UTC);
         assertEquals("00:00", dateTimeFormatter.format(TEST_INSTANT));
     }
+  @Test
+  public void test_format_locale_tok() {
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+            .withLocale(new Locale("tok"))
+            .withZone(ZoneOffset.UTC);
+    assertEquals("#00:00", dateTimeFormatter.format(TEST_INSTANT));
+  }
 }
