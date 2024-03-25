@@ -1363,7 +1363,8 @@ public class CharacterTest extends TestCase {
         assertTrue(Character.isUnicodeIdentifierPart(0xFF10));
         assertTrue(Character.isUnicodeIdentifierPart(0x1D165));
         assertTrue(Character.isUnicodeIdentifierPart(0x1D167));
-        assertTrue(Character.isUnicodeIdentifierPart(0x1D173));
+        // U+1D173 is MUSICAL SYMBOL BEGIN BEAM. It's an identifier ignore-able since Unicode 15.1
+        // assertTrue(Character.isUnicodeIdentifierPart(0x1D173));
 
         assertFalse(Character.isUnicodeIdentifierPart(0x10FFFF));
         assertFalse(Character.isUnicodeIdentifierPart(0x110000));

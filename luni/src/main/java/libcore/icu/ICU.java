@@ -435,7 +435,7 @@ public final class ICU {
    * See {@link #transformIcuDateTimePattern(String)} for documentation about the implementation.
    */
   public static String transformIcuDateTimePattern_forJavaTime(String pattern) {
-    return transformIcuDateTimePattern(pattern);
+    return transformIcuDateTimePattern(pattern, /* isJavaTime= */ true);
   }
 
   /**
@@ -446,7 +446,7 @@ public final class ICU {
    * See {@link #transformIcuDateTimePattern(String)} for documentation about the implementation.
    */
   public static String transformIcuDateTimePattern_forJavaText(String pattern) {
-    return transformIcuDateTimePattern(pattern);
+    return transformIcuDateTimePattern(pattern,  /* isJavaTime= */ false);
   }
 
   /**
@@ -460,11 +460,52 @@ public final class ICU {
    * in one place, but now separate because java.text and java.time handles different sets of
    * symbols.
    */
-  private static String transformIcuDateTimePattern(String pattern) {
+  private static String transformIcuDateTimePattern(String pattern, boolean isJavaTime) {
     if (pattern == null) {
       return null;
     }
 
+    pattern = transformSymbolB(pattern);
+
+    if (isJavaTime) {
+      // '#' is reserved for the future use in java.time, but it's treated as literal in CLDR.
+      // It needs to be quoted for the usage in java.time.
+      pattern = transformHashSign(pattern);
+    }
+
+    return pattern;
+  }
+
+  private static String transformHashSign(String pattern) {
+    if (pattern.indexOf('#') == -1) {
+      return pattern;
+    }
+
+    StringBuilder sb = new StringBuilder(pattern.length());
+    boolean isInQuote = false;
+    for (int i = 0; i < pattern.length(); i++) {
+      char curr = pattern.charAt(i);
+      if (isInQuote) {
+        if (curr == '\'') {
+          // e.g. '' represents a single quote literal or 'xyz' represents literal text.
+          // This applies to both java.time and java.text date / time patterns.
+          isInQuote = false;
+        }
+        sb.append(curr);
+      } else if (curr == '#') {
+        sb.append("'#'");
+      } else {
+         if (curr == '\'') {
+           isInQuote = true;
+        }
+        sb.append(curr);
+      }
+    }
+    return sb.toString();
+
+  }
+
+  private static String transformSymbolB(String pattern) {
     // For details about the different symbols, see
     // http://cldr.unicode.org/translation/date-time-1/date-time-patterns#TOC-Day-period-patterns
     // The symbols B means "Day periods with locale-specific ranges".
