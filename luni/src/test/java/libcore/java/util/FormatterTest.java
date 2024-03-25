@@ -32,6 +32,8 @@ import dalvik.system.VMRuntime;
 
 import libcore.junit.util.compat.CoreCompatChangeRule.DisableCompatChanges;
 import libcore.junit.util.compat.CoreCompatChangeRule.EnableCompatChanges;
+import libcore.test.annotation.NonMts;
+import libcore.test.reasons.NonMtsReasons;
 
 import org.junit.After;
 import org.junit.Before;
@@ -71,6 +73,8 @@ public class FormatterTest {
         aFile.delete();
     }
 
+    @NonMts(reason = NonMtsReasons.ICU_VERSION_DEPENDENCY,
+        disabledUntilSdk = VersionCodes.VANILLA_ICE_CREAM)
     @Test
     public void test_numberLocalization() throws Exception {
         Locale arabic = new Locale("ar");
@@ -82,7 +86,7 @@ public class FormatterTest {
         assertEquals("12 \u0661\u066c\u0662\u0663\u0664\u066c\u0665\u0666\u0667\u066c\u0668\u0669\u0660 34",
                 String.format(arabic, "12 %,d 34", 1234567890));
         // And three localized floating point formats:
-        assertEquals("12 \u0661\u066b\u0662\u0663\u0660\u0627\u0633+\u0660\u0660 34",
+        assertEquals("12 \u0661\u066b\u0662\u0663\u0660\u0623\u0633+\u0660\u0660 34",
                 String.format(arabic, "12 %.3e 34", 1.23));
         assertEquals("12 \u0661\u066b\u0662\u0663\u0660 34",
                 String.format(arabic, "12 %.3f 34", 1.23));
@@ -104,13 +108,15 @@ public class FormatterTest {
     }
 
     // http://b/27566754
+    @NonMts(reason = NonMtsReasons.ICU_VERSION_DEPENDENCY,
+        disabledUntilSdk = VersionCodes.VANILLA_ICE_CREAM)
     @Test
     public void test_internationalizedExponent() {
         assertEquals("1E+02", String.format(Locale.ENGLISH, "%.0E", 100.0));
         assertEquals("1e+02", String.format(Locale.ENGLISH, "%.0e", 100.0));
 
-        assertEquals("\u0661\u0627\u0633+\u0660\u0662", String.format(new Locale("ar"), "%.0E", 100.0));
-        assertEquals("\u0661\u0627\u0633+\u0660\u0662", String.format(new Locale("ar"), "%.0e", 100.0));
+        assertEquals("\u0661\u0623\u0633+\u0660\u0662", String.format(new Locale("ar"), "%.0E", 100.0));
+        assertEquals("\u0661\u0623\u0633+\u0660\u0662", String.format(new Locale("ar"), "%.0e", 100.0));
 
         assertEquals("1\u00d710^+02", String.format(new Locale("et"), "%.0E", 100.0));
         assertEquals("1\u00d710^+02", String.format(new Locale("et"), "%.0e", 100.0));
