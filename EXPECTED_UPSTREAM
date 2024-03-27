@@ -2527,6 +2527,11 @@ ojluni/src/test/java/util/SequencedCollection/SimpleDeque.java,jdk21u/jdk-21.0.1
 ojluni/src/test/java/util/SequencedCollection/SimpleList.java,jdk21u/jdk-21.0.1-ga,test/jdk/java/util/SequencedCollection/SimpleList.java
 ojluni/src/test/java/util/SequencedCollection/SimpleSortedMap.java,jdk21u/jdk-21.0.1-ga,test/jdk/java/util/SequencedCollection/SimpleSortedMap.java
 ojluni/src/test/java/util/SequencedCollection/SimpleSortedSet.java,jdk21u/jdk-21.0.1-ga,test/jdk/java/util/SequencedCollection/SimpleSortedSet.java
+ojluni/src/test/java/util/ServiceLoader/basic/Basic.java,jdk17u/jdk-17.0.10-ga,test/jdk/java/util/ServiceLoader/basic/Basic.java
+ojluni/src/test/java/util/ServiceLoader/basic/FooProvider1.java,jdk17u/jdk-17.0.10-ga,test/jdk/java/util/ServiceLoader/basic/FooProvider1.java
+ojluni/src/test/java/util/ServiceLoader/basic/FooProvider2.java,jdk17u/jdk-17.0.10-ga,test/jdk/java/util/ServiceLoader/basic/FooProvider2.java
+ojluni/src/test/java/util/ServiceLoader/basic/FooProvider3.java,jdk17u/jdk-17.0.10-ga,test/jdk/java/util/ServiceLoader/basic/FooProvider3.java
+ojluni/src/test/java/util/ServiceLoader/basic/FooService.java,jdk17u/jdk-17.0.10-ga,test/jdk/java/util/ServiceLoader/basic/FooService.java
 ojluni/src/test/java/util/StringJoiner/MergeTest.java,jdk11u/jdk-11.0.13-ga,test/jdk/java/util/StringJoiner/MergeTest.java
 ojluni/src/test/java/util/StringJoiner/StringJoinerTest.java,jdk11u/jdk-11.0.13-ga,test/jdk/java/util/StringJoiner/StringJoinerTest.java
 ojluni/src/test/java/util/Timer/Args.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Timer/Args.java
