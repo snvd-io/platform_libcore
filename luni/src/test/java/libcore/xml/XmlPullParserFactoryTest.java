@@ -16,6 +16,11 @@
 
 package libcore.xml;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import com.android.org.kxml2.io.KXmlParser;
 import com.android.org.kxml2.io.KXmlSerializer;
 import java.io.IOException;
@@ -23,14 +28,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
-import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
-public class XmlPullParserFactoryTest extends TestCase {
+@RunWith(JUnit4.class)
+public class XmlPullParserFactoryTest {
 
+    @Test
     public void testDefaultNewInstance() throws Exception {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance(null, null);
         XmlPullParser parser = factory.newPullParser();
@@ -46,6 +55,7 @@ public class XmlPullParserFactoryTest extends TestCase {
      * Tests that trying to instantiate a parser with an empty list of
      * parsers and serializers fails.
      */
+    @Test
     public void testOverriding_emptyClassList() {
         TestXmlPullParserFactory tf = new TestXmlPullParserFactory(null, null);
 
@@ -62,6 +72,7 @@ public class XmlPullParserFactoryTest extends TestCase {
         }
     }
 
+    @Test
     public void testOverriding_customClassList() throws Exception {
         TestXmlPullParserFactory tf = new TestXmlPullParserFactory(
                 new String[] { "libcore.xml.XmlPullParserFactoryTest$XmlPullParserStub" },
@@ -85,6 +96,7 @@ public class XmlPullParserFactoryTest extends TestCase {
     }
 
     // https://b/12956724
+    @Test
     public void testSetFeature_setsFeatureOnlyIfTrue() throws Exception {
         TestXmlPullParserFactory tf = new TestXmlPullParserFactory(
                 new String[] { "libcore.xml.XmlPullParserFactoryTest$XmlParserThatHatesAllFeatures" }, null);
@@ -92,6 +104,18 @@ public class XmlPullParserFactoryTest extends TestCase {
         tf.setFeature("foo", false);
         tf.newPullParser();
     }
+
+    @Test
+    public void testSetValidating() throws Exception {
+        XmlPullParserFactory xppf = XmlPullParserFactory.newInstance();
+        xppf.setValidating(true);
+        assertTrue(xppf.isValidating());
+        xppf.setValidating(false);
+        assertFalse(xppf.isValidating());
+        xppf.setValidating(true);
+        assertTrue(xppf.isValidating());
+    }
+
 
 
     /**
