@@ -242,26 +242,65 @@ public class ICUTest extends junit.framework.TestCase {
 
   public void testTransformIcuDateTimePattern_forJavaTime() {
     // Example patterns coming from locale my-MM
-    assertTransformIcuDateTimePattern("B H:mm", "H:mm");
-    assertTransformIcuDateTimePattern("B HH:mm:ss", "HH:mm:ss");
-    assertTransformIcuDateTimePattern("dd-MM-yy B HH:mm:ss", "dd-MM-yy HH:mm:ss");
-    assertTransformIcuDateTimePattern("y၊ MMM d B HH:mm:ss", "y၊ MMM d HH:mm:ss");
+    assertTransformIcuDateTimePatternForJavaTime("B H:mm", "H:mm");
+    assertTransformIcuDateTimePatternForJavaTime("B HH:mm:ss", "HH:mm:ss");
+    assertTransformIcuDateTimePatternForJavaTime("dd-MM-yy B HH:mm:ss", "dd-MM-yy HH:mm:ss");
+    assertTransformIcuDateTimePatternForJavaTime("y၊ MMM d B HH:mm:ss", "y၊ MMM d HH:mm:ss");
 
     // Other examples
-    assertTransformIcuDateTimePattern("H:mm B", "H:mm");
-    assertTransformIcuDateTimePattern("H:mm b", "H:mm");
-    assertTransformIcuDateTimePattern("b H:mm", "H:mm");
-    assertTransformIcuDateTimePattern("B H:mm:ss, E", "H:mm:ss, E");
+    assertTransformIcuDateTimePatternForJavaTime("H:mm B", "H:mm");
+    assertTransformIcuDateTimePatternForJavaTime("H:mm b", "H:mm");
+    assertTransformIcuDateTimePatternForJavaTime("b H:mm", "H:mm");
+    assertTransformIcuDateTimePatternForJavaTime("B H:mm:ss, E", "H:mm:ss, E");
 
     // Examples with 'h' 12-hour format
-    assertTransformIcuDateTimePattern("hh:mm a", "hh:mm a");
-    assertTransformIcuDateTimePattern("hh:mm a", "hh:mm a");
-    assertTransformIcuDateTimePattern("a h:mm:ss, E", "a h:mm:ss, E");
-    assertTransformIcuDateTimePattern("dd-MM-yy a", "dd-MM-yy a");
+    assertTransformIcuDateTimePatternForJavaTime("hh:mm a", "hh:mm a");
+    assertTransformIcuDateTimePatternForJavaTime("hh:mm a", "hh:mm a");
+    assertTransformIcuDateTimePatternForJavaTime("a h:mm:ss, E", "a h:mm:ss, E");
+    assertTransformIcuDateTimePatternForJavaTime("dd-MM-yy a", "dd-MM-yy a");
+
+    assertTransformIcuDateTimePatternForJavaTime("#HH:mm", "'#'HH:mm"); // # sign is reserved for future use
+    assertTransformIcuDateTimePatternForJavaTime("'#'HH:mm", "'#'HH:mm");
+    assertTransformIcuDateTimePatternForJavaTime("#HH:mm:ss 'lon' v", "'#'HH:mm:ss 'lon' v");
+    assertTransformIcuDateTimePatternForJavaTime("HH:mm ''", "HH:mm ''");
+    assertTransformIcuDateTimePatternForJavaTime("H:mm 'B'", "H:mm 'B'");
+    assertTransformIcuDateTimePatternForJavaTime("H:mm 'b'", "H:mm 'b'");
   }
 
-  private static void assertTransformIcuDateTimePattern(String input, String expectedOutput) {
+  private static void assertTransformIcuDateTimePatternForJavaTime(String input, String expectedOutput) {
     String pattern = ICU.transformIcuDateTimePattern_forJavaTime(input);
+    assertEquals("input:" + input, expectedOutput, pattern);
+  }
+
+  public void testTransformIcuDateTimePattern_forJavaText() {
+    // Example patterns coming from locale my-MM
+    assertTransformIcuDateTimePatternForJavaText("B H:mm", "H:mm");
+    assertTransformIcuDateTimePatternForJavaText("B HH:mm:ss", "HH:mm:ss");
+    assertTransformIcuDateTimePatternForJavaText("dd-MM-yy B HH:mm:ss", "dd-MM-yy HH:mm:ss");
+    assertTransformIcuDateTimePatternForJavaText("y၊ MMM d B HH:mm:ss", "y၊ MMM d HH:mm:ss");
+
+    // Other examples
+    assertTransformIcuDateTimePatternForJavaText("H:mm B", "H:mm");
+    assertTransformIcuDateTimePatternForJavaText("H:mm b", "H:mm");
+    assertTransformIcuDateTimePatternForJavaText("b H:mm", "H:mm");
+    assertTransformIcuDateTimePatternForJavaText("B H:mm:ss, E", "H:mm:ss, E");
+
+    // Examples with 'h' 12-hour format
+    assertTransformIcuDateTimePatternForJavaText("hh:mm a", "hh:mm a");
+    assertTransformIcuDateTimePatternForJavaText("hh:mm a", "hh:mm a");
+    assertTransformIcuDateTimePatternForJavaText("a h:mm:ss, E", "a h:mm:ss, E");
+    assertTransformIcuDateTimePatternForJavaText("dd-MM-yy a", "dd-MM-yy a");
+
+    assertTransformIcuDateTimePatternForJavaText("#HH:mm", "#HH:mm");
+    assertTransformIcuDateTimePatternForJavaText("'#'HH:mm", "'#'HH:mm");
+    assertTransformIcuDateTimePatternForJavaText("#HH:mm:ss 'lon' v", "#HH:mm:ss 'lon' v");
+    assertTransformIcuDateTimePatternForJavaText("HH:mm ''", "HH:mm ''");
+    assertTransformIcuDateTimePatternForJavaText("H:mm 'B'", "H:mm 'B'");
+    assertTransformIcuDateTimePatternForJavaText("H:mm 'b'", "H:mm 'b'");
+  }
+
+  private static void assertTransformIcuDateTimePatternForJavaText(String input, String expectedOutput) {
+    String pattern = ICU.transformIcuDateTimePattern_forJavaText(input);
     assertEquals("input:" + input, expectedOutput, pattern);
   }
 
