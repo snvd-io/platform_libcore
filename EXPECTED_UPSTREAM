@@ -2026,6 +2026,7 @@ ojluni/src/test/java/lang/invoke/VarHandles/accessibility/pkg/C.java,jdk17u/jdk-
 ojluni/src/test/java/lang/invoke/VarHandles/accessibility/pkg/subpkg/B_extends_A.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/lang/invoke/VarHandles/accessibility/pkg/subpkg/B_extends_A.java
 ojluni/src/test/java/lang/invoke/VarHandles/accessibility/pkg/subpkg/C.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/lang/invoke/VarHandles/accessibility/pkg/subpkg/C.java
 ojluni/src/test/java/lang/invoke/VarHandles/generate-vh-tests.sh,jdk11u/jdk-11.0.13-ga,test/jdk/java/lang/invoke/VarHandles/generate-vh-tests.sh
+ojluni/src/test/java/lang/ref/CleanerTest.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/lang/ref/CleanerTest.java
 ojluni/src/test/java/lang/reflect/records/CheckEqualityIsBasedOnFields.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/lang/reflect/records/CheckEqualityIsBasedOnFields.java
 ojluni/src/test/java/lang/reflect/records/RecordReflectionTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/lang/reflect/records/RecordReflectionTest.java
 ojluni/src/test/java/math/BigDecimal/AddTests.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/math/BigDecimal/AddTests.java
