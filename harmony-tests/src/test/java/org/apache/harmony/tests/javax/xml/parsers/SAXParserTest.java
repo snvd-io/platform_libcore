@@ -261,6 +261,13 @@ public class SAXParserTest extends TestCase {
         }
     }
 
+    public void testGetSchema() {
+        try {
+            new MockSAXParser().getSchema();
+            fail("UnsupportedOperationException was expected");
+        } catch (UnsupportedOperationException ignored) {}
+    }
+
     /**
      * javax.xml.parser.SAXParser#getSchema().
      * TODO getSchema() IS NOT SUPPORTED
