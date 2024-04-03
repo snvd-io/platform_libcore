@@ -89,6 +89,34 @@ public class SAXParserFactoryTest extends TestCase {
     }
      */
 
+    public void test_getSchema() {
+        try {
+            spf.getSchema();
+            fail("UnsupportedOperationException is expected");
+        } catch (UnsupportedOperationException ignored) {}
+    }
+
+    public void test_setSchema() {
+        try {
+            spf.setSchema(null);
+            fail("UnsupportedOperationException is expected");
+        } catch (UnsupportedOperationException ignored) {}
+    }
+
+    public void test_newInstanceLjavaLangString_LjavaLangClassLoader() {
+        SAXParserFactory.newInstance("org.apache.harmony.xml.parsers.SAXParserFactoryImpl", null);
+
+        try {
+            SAXParserFactory.newInstance("non-existing-class", null);
+            fail("FactoryConfigurationError is expected");
+        } catch (FactoryConfigurationError ignored) {}
+
+        try {
+            SAXParserFactory.newInstance(null, null);
+            fail("FactoryConfigurationError is expected");
+        } catch (FactoryConfigurationError ignored) {}
+    }
+
     public void test_setIsNamespaceAware() {
         spf.setNamespaceAware(true);
         assertTrue(spf.isNamespaceAware());
