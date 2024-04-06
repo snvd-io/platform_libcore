@@ -15,6 +15,7 @@
  */
 package libcore.java.time.format;
 
+import org.junit.Assume;
 import org.junit.Test;
 
 import java.time.Instant;
@@ -33,6 +34,13 @@ import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
+import android.icu.util.VersionInfo;
+
+import dalvik.annotation.compat.VersionCodes;
+
+import libcore.test.annotation.NonMts;
+import libcore.test.reasons.NonMtsReasons;
 
 /**
  * Additional tests for {@link DateTimeFormatter}.
@@ -115,11 +123,16 @@ public class DateTimeFormatterTest {
             .withZone(ZoneOffset.UTC);
         assertEquals("00:00", dateTimeFormatter.format(TEST_INSTANT));
     }
-  @Test
-  public void test_format_locale_tok() {
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-            .withLocale(new Locale("tok"))
-            .withZone(ZoneOffset.UTC);
-    assertEquals("#00:00", dateTimeFormatter.format(TEST_INSTANT));
-  }
+
+    @Test
+    @NonMts(bug = 331729784, reason = NonMtsReasons.ICU_VERSION_DEPENDENCY,
+            disabledUntilSdk = VersionCodes.VANILLA_ICE_CREAM)
+    public void test_format_locale_tok() {
+        Assume.assumeTrue(VersionInfo.ICU_VERSION.getMajor() >= 74);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+                .withLocale(new Locale("tok"))
+                .withZone(ZoneOffset.UTC);
+        assertEquals("#00:00", dateTimeFormatter.format(TEST_INSTANT));
+    }
 }
