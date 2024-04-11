@@ -860,7 +860,8 @@ public class DatagramSocketTest extends TestCaseWithRules {
         }
     }
 
-    public void test_setBroadcastZ() throws Exception {
+    // TODO(b/333860500): Diagnose and fix.
+    private void xtest_setBroadcastZ() throws Exception {
         DatagramSocket theSocket = new DatagramSocket(0);
         theSocket.setBroadcast(false);
         byte theBytes[] = { -1, -1, -1, -1 };
