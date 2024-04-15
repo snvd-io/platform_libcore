@@ -380,7 +380,6 @@ public class ParameterTest {
         public InnerClass(Function<String, Integer> p1) {}
     }
 
-    @Ignore("b/328705542")
     @Test
     public void testInnerClassSingleParameter() throws Exception {
         Class<?> outerClass = ParameterTest.class;
@@ -389,12 +388,14 @@ public class ParameterTest {
 
         ExecutableTestHelper helper = new ExecutableTestHelper(constructor);
         helper.checkStandardParametersBehavior()
-                .checkParametersToString("[" + outerClass.getName() + " arg0]")
-                .checkParametersMetadataNotAvailable()
+                .checkParametersToString("[final " + outerClass.getName() + " arg0]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
                 .checkGetType(outerClass)
+                .checkName(false, "arg0")
+                .checkModifiers(4112) // 4112 == Modifier.SYNTHETIC & Modifier.FINAL
+                .checkImplicitAndSynthetic(false, true)
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
     }
 
@@ -417,7 +418,6 @@ public class ParameterTest {
                 .checkGetParameterizedType("class " + outerClass.getName());
     }
 
-    @Ignore("b/328705542")
     @Test
     public void testInnerClassTwoParameters() throws Exception {
         Class<?> outerClass = ParameterTest.class;
@@ -427,15 +427,20 @@ public class ParameterTest {
         ExecutableTestHelper helper = new ExecutableTestHelper(constructor);
         helper.checkStandardParametersBehavior()
                 .checkParametersToString(
-                        "[" + outerClass.getName() + " arg0, java.lang.String arg1]")
-                .checkParametersMetadataNotAvailable()
+                        "[final " + outerClass.getName() + " arg0, java.lang.String arg1]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
+                .checkName(false, "arg0")
+                .checkModifiers(4112) // 4112 == Modifier.SYNTHETIC & Modifier.FINAL
+                .checkImplicitAndSynthetic(false, true)
                 .checkGetType(outerClass)
                 .checkGetParameterizedType("class " + outerClass.getName());
 
         helper.getParameterTestHelper(1)
+                .checkName(false, "arg1")
+                .checkModifiers(0)
+                .checkImplicitAndSynthetic(false, false)
                 .checkGetType(String.class)
                 .checkGetParameterizedType("class java.lang.String");
     }
@@ -467,7 +472,6 @@ public class ParameterTest {
                 .checkGetParameterizedType("class java.lang.String");
     }
 
-    @Ignore("b/328705542")
     @Test
     public void testInnerClassGenericParameter() throws Exception {
         Class<?> outerClass = ParameterTest.class;
@@ -477,17 +481,23 @@ public class ParameterTest {
         ExecutableTestHelper helper = new ExecutableTestHelper(constructor);
         helper.checkStandardParametersBehavior()
                 .checkParametersToString(
-                        "[" + outerClass.getName() + " arg0, java.util.function.Function arg1]")
-                .checkParametersMetadataNotAvailable()
+                        "[final " + outerClass.getName() + " arg0, " +
+                        "java.util.function.Function<java.lang.String, java.lang.Integer> arg1]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
+                .checkName(false, "arg0")
+                .checkModifiers(4112) // 4112 == Modifier.SYNTHETIC & Modifier.FINAL
+                .checkImplicitAndSynthetic(false, true)
                 .checkGetType(outerClass)
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
 
         helper.getParameterTestHelper(1)
+                .checkName(false, "arg1")
+                .checkModifiers(0)
+                .checkImplicitAndSynthetic(false, false)
                 .checkGetType(Function.class)
-                .checkGetParameterizedType("interface java.util.function.Function");
+                .checkGetParameterizedType("java.util.function.Function<java.lang.String, java.lang.Integer>");
 
         // The non-genericised string above is probably the result of a spec bug due to a mismatch
         // between the generic signature for the constructor (which suggests a single parameter)
@@ -532,14 +542,13 @@ public class ParameterTest {
      * generated methods. This test may be brittle as it may rely on the compiler's implementation
      * of enums.
      */
-    @Ignore("b/328705542")
     @Test
     public void testEnumConstructor() throws Exception {
         Constructor<?> constructor = TestEnum.class.getDeclaredConstructor(String.class, int.class);
 
         ExecutableTestHelper helper = new ExecutableTestHelper(constructor);
         helper.checkStandardParametersBehavior()
-                .checkParametersToString("[java.lang.String arg0, int arg1]")
+                .checkParametersToString("[ java.lang.String arg0,  int arg1]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
@@ -579,18 +588,19 @@ public class ParameterTest {
                 .checkGetParameterizedType("int");
     }
 
-    @Ignore("b/328705542")
     @Test
     public void testEnumValueOf() throws Exception {
         Method method = TestEnum.class.getDeclaredMethod("valueOf", String.class);
 
         ExecutableTestHelper helper = new ExecutableTestHelper(method);
         helper.checkStandardParametersBehavior()
-                .checkParametersToString("[java.lang.String arg0]")
-                .checkParametersMetadataNotAvailable()
+                .checkParametersToString("[ java.lang.String arg0]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
+                .checkName(false, "arg0")
+                .checkModifiers(32768) // 32768 == Modifier.MANDATED
+                .checkImplicitAndSynthetic(true, false)
                 .checkGetType(String.class)
                 .checkGetParameterizedType("class java.lang.String");
     }
@@ -744,7 +754,6 @@ public class ParameterTest {
                 .checkGetParameterizedType("class [Ljava.lang.Integer;");
     }
 
-    @Ignore("b/328705542")
     @Test
     public void testAnonymousClassConstructor() throws Exception {
         Class<?> outerClass = ParameterTest.class;
@@ -753,11 +762,13 @@ public class ParameterTest {
 
         ExecutableTestHelper helper = new ExecutableTestHelper(constructor);
         helper.checkStandardParametersBehavior()
-                .checkParametersToString("[" + outerClass.getName() + " arg0]")
-                .checkParametersMetadataNotAvailable()
+                .checkParametersToString("[final " + outerClass.getName() + " arg0]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
+                .checkName(false, "arg0")
+                .checkModifiers(32784) // 32784 == Modifier.MANDATED & Modifier.FINAL
+                .checkImplicitAndSynthetic(true, false)
                 .checkGetType(outerClass)
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
     }
@@ -794,7 +805,6 @@ public class ParameterTest {
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
     }
 
-    @Ignore("b/328705542")
     @Test
     public void testMethodClassConstructor() throws Exception {
         Class<?> outerClass = ParameterTest.class;
@@ -803,11 +813,13 @@ public class ParameterTest {
 
         ExecutableTestHelper helper = new ExecutableTestHelper(constructor);
         helper.checkStandardParametersBehavior()
-                .checkParametersToString("[" + outerClass.getName() + " arg0]")
-                .checkParametersMetadataNotAvailable()
+                .checkParametersToString("[final " + outerClass.getName() + " arg0]")
                 .checkParametersNoVarArgs();
 
         helper.getParameterTestHelper(0)
+                .checkName(false, "arg0")
+                .checkModifiers(32784) // 32784 == Modifier.MANDATED & Modifier.FINAL
+                .checkImplicitAndSynthetic(true, false)
                 .checkGetType(outerClass)
                 .checkGetParameterizedType("class " + outerClass.getName() + "");
     }
