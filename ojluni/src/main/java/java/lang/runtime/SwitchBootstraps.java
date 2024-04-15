@@ -46,6 +46,8 @@ import static java.util.Objects.requireNonNull;
  * of the {@code switch}, implicitly numbered sequentially from {@code [0..N)}.
  *
  * @since 21
+ *
+ * @hide
  */
 public class SwitchBootstraps {
 
@@ -140,6 +142,8 @@ public class SwitchBootstraps {
      * {@code Integer}, {@code Class} or {@code EnumDesc}.
      * @jvms 4.4.6 The CONSTANT_NameAndType_info Structure
      * @jvms 4.4.10 The CONSTANT_Dynamic_info and CONSTANT_InvokeDynamic_info Structures
+     *
+     * @hide
      */
     public static CallSite typeSwitch(MethodHandles.Lookup lookup,
                                       String invocationName,
@@ -305,6 +309,8 @@ public class SwitchBootstraps {
      * {@code Class} of the target enum type.
      * @jvms 4.4.6 The CONSTANT_NameAndType_info Structure
      * @jvms 4.4.10 The CONSTANT_Dynamic_info and CONSTANT_InvokeDynamic_info Structures
+     *
+     * @hide
      */
     public static CallSite enumSwitch(MethodHandles.Lookup lookup,
                                       String invocationName,

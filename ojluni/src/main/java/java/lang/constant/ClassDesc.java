@@ -81,6 +81,8 @@ public sealed interface ClassDesc
         return ClassDesc.ofDescriptor("L" + binaryToInternal(name) + ";");
     }
 
+    // BEGIN Android-removed: Not used in Android.
+    /*
     /**
      * Returns a {@linkplain ClassDesc} for a class or interface type,
      * given the name of the class or interface in internal form,
@@ -101,11 +103,13 @@ public sealed interface ClassDesc
      * @see ClassDesc#of(String)
      * @see ClassDesc#ofDescriptor(String)
      * @since 20
-     */
+     * /
     static ClassDesc ofInternalName(String name) {
         ConstantUtils.validateInternalClassName(requireNonNull(name));
         return ClassDesc.ofDescriptor("L" + name + ";");
     }
+     */
+    // END Android-removed: Not used in Android.
 
     /**
      * Returns a {@linkplain ClassDesc} for a class or interface type,
