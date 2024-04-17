@@ -16,20 +16,14 @@
 
 package libcore.java.util.zip;
 
-import android.system.OsConstants;
-import libcore.io.Libcore;
-
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
-import java.util.Enumeration;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
@@ -58,31 +52,75 @@ public final class ZipFileTest extends AbstractZipFileTest {
     public void test_zipFileWith_cp1251_fileNames() throws Exception {
         String resourceName = "/libcore/java/util/zip/cp1251.zip";
 
+        File zipWithCp1251 = readResource(resourceName);
+
+        Charset cp1251 = Charset.forName("cp1251");
+        try (ZipFile zipFile = new ZipFile(zipWithCp1251, cp1251)) {
+            ZipEntry zipEntry = zipFile.entries().nextElement();
+
+            assertEquals("имя файла", zipEntry.getName());
+        }
+
+        try (ZipFile zipFile = new ZipFile(zipWithCp1251.getAbsolutePath(), cp1251)) {
+            ZipEntry zipEntry = zipFile.entries().nextElement();
+
+            assertEquals("имя файла", zipEntry.getName());
+        }
+    }
+
+    public void test_throwsWhenTriesToOpenCorruptedFile() throws Exception {
+        // This file was by running following commands:
+        // echo foo > a.txt
+        // zip a.zip a.txt
+        // vim --noplugin a.zip
+        // :%!xxd in vim to enter into hex mode
+        // Changed 3rd and 4th bytes into FFFF
+        // :%!xxd -r to write back
+        String resourceName = "/libcore/java/util/zip/Corrupted.zip";
+
+        File corruptedZip = readResource(resourceName);
+        try {
+            new ZipFile(corruptedZip);
+            fail("ZipException was expected");
+        } catch (ZipException expected) {
+            String msg = "Expected exception to contain \"invalid LFH\". Exception was: " +
+                expected;
+            assertTrue(msg, expected.getMessage().contains("invalid LFH"));
+        }
+    }
+
+    public void test_throwsWhenTriesToOpen_nonEmptyFileWhichStartsWithEndHeader() throws Exception {
+        // This file was by running following commands:
+        // echo foo > a.txt
+        // zip a.zip a.txt
+        // vim --noplugin a.zip
+        // :%!xxd in vim to enter into hex mode
+        // Changed 3rd and 4th bytes into 0506
+        // :%!xxd -r to write back
+        String resourceName = "/libcore/java/util/zip/Corrupted2.zip";
+
+        File corruptedZip = readResource(resourceName);
+        try {
+            new ZipFile(corruptedZip);
+            fail("ZipException was expected");
+        } catch (ZipException expected) {}
+    }
+
+    /* Reads resource and stores its content to a temp file. */
+    private static File readResource(String resourceName) throws Exception {
         File tempFile = createTemporaryZipFile();
-        try (
-            InputStream is = ZipFileTest.class.getResourceAsStream(resourceName);
-            FileOutputStream fos = new FileOutputStream(tempFile)) {
+        try (InputStream is = ZipFileTest.class.getResourceAsStream(resourceName);
+             FileOutputStream fos = new FileOutputStream(tempFile)) {
 
             int read;
             byte[] arr = new byte[1024];
 
-            while ((read = is.read(arr)) > 0) {
+            while ((read = is.read(arr)) >= 0) {
                 fos.write(arr, 0, read);
             }
             fos.flush();
 
-            Charset cp1251 = Charset.forName("cp1251");
-            try (ZipFile zipFile = new ZipFile(tempFile, cp1251)) {
-                ZipEntry zipEntry = zipFile.entries().nextElement();
-
-                assertEquals("имя файла", zipEntry.getName());
-            }
-
-            try (ZipFile zipFile = new ZipFile(tempFile.getAbsolutePath(), cp1251)) {
-                ZipEntry zipEntry = zipFile.entries().nextElement();
-
-                assertEquals("имя файла", zipEntry.getName());
-            }
+            return tempFile;
         }
     }
 }
