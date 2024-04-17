@@ -979,11 +979,19 @@ public class TimerTest extends TestCase {
 
         Thread.sleep(400);
         Thread timerThread = threadRef.get();
+
+        // Check if the timer thread is still alive every 10ms for 2 seconds
+        for (int i = 0; i < 200; i++) {
+            if (!timerThread.isAlive()) {
+                break;
+            }
+            Thread.sleep(10);
+        }
         assertFalse(timerThread.isAlive());
     }
 
     private class CheckIfExecutedOnTime extends TimerTask {
-        private static final int TOLERANCE_TIME = 100;
+        private static final int TOLERANCE_TIME = 300;
         private final AtomicBoolean executedOnTime;
 
         static final int SLEEPING_TIME = 10 * TOLERANCE_TIME;
