@@ -45,11 +45,20 @@ public class CurrencyTest {
 
     @Test
     public void test_currencyCodeIcuConsistency() {
+        String countryCode = locale.getCountry();
         // java.util.Currency.getCurrency is time-sensitive. And Croatia doesn't use Euro until
         // 2023/1/1. https://unicode-org.atlassian.net/browse/CLDR-16061
         // We skip the test until Feb 2023.
-        if ("HR".equals(locale.getCountry()) &&
+        if ("HR".equals(countryCode) &&
                 LocalDateTime.of(2023, 2, 1, 0, 0).atZone(ZoneId.of("GMT")).toInstant()
+                        .isAfter(Instant.now())) {
+            return;
+        }
+        // https://unicode-org.atlassian.net/browse/CLDR-17274
+        // Effective 2025-03-31, Curaçao and Sint Maarten are replacing ANG (Netherlands
+        // Antillean Guilder) with XCG (Caribbean Guilder).
+        if (("CW".equals(countryCode) || "SX".equals(countryCode)) &&
+                LocalDateTime.of(2025, 5, 1, 0, 0).atZone(ZoneId.of("GMT")).toInstant()
                         .isAfter(Instant.now())) {
             return;
         }
