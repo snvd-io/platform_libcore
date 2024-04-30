@@ -22,6 +22,8 @@ import android.system.NetlinkSocketAddress;
 import android.system.Os;
 import android.system.OsConstants;
 import android.system.PacketSocketAddress;
+import android.system.StructCapUserData;
+import android.system.StructCapUserHeader;
 import android.system.StructCmsghdr;
 import android.system.StructMsghdr;
 import android.system.StructRlimit;
@@ -2304,6 +2306,19 @@ public class OsTest {
         }
 
         Os.munmap(address, size);
+    }
+
+    @Test
+    public void testCapset() throws Exception {
+        var header = new StructCapUserHeader(_LINUX_CAPABILITY_VERSION_3, /* pid= */0);
+        var existing = Os.capget(header);
+        var noCapabilities = new StructCapUserData(0, 0, 0);
+
+        try {
+            Os.capset(header, new StructCapUserData[] { noCapabilities, noCapabilities });
+        } finally {
+            Os.capset(header, existing);
+        }
     }
 
     /*
