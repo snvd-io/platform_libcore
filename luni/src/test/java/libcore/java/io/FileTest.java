@@ -40,6 +40,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import static org.junit.Assume.assumeTrue;
+
+import dalvik.annotation.compat.VersionCodes;
+import dalvik.system.VMRuntime;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -491,6 +496,49 @@ public class FileTest {
     public void testGetCanonicalPath_longPath() {
         String p = "/a".repeat(2048);
         Assert.assertThrows(IOException.class, () -> new File(p).getCanonicalFile());
+    }
+
+    @Test
+    @CoreCompatChangeRule.EnableCompatChanges({File.CANONICALIZE_PARENT_OF_ROOT_DIR})
+    public void testGetCanonicalPath_parentOfRootPath_afterU_whenChecksAreEnabled()
+            throws IOException {
+        assertGetCanonicalPath_commonTestCases();
+
+        var msg = "CANONICALIZE_PARENT_OF_ROOT_DIR change is are done only starting from V. "
+                + "Current SDK=" + VMRuntime.getSdkVersion();
+        assumeTrue(msg, VMRuntime.getSdkVersion() >= VersionCodes.VANILLA_ICE_CREAM);
+        assertGetCanonicalPath("/non_existing/directory/../../../new_file", "/new_file");
+        assertGetCanonicalPath("/non/existing/directory/../../../../new_file", "/new_file");
+    }
+
+    @Test
+    @CoreCompatChangeRule.DisableCompatChanges({File.CANONICALIZE_PARENT_OF_ROOT_DIR})
+    public void testGetCanonicalPath_parentOfRootPath_whenChecksAreDisabled() throws IOException {
+        assertGetCanonicalPath("/non_existing/directory/../../../new_file", "/../new_file");
+        assertGetCanonicalPath("/non/existing/directory/../../../../new_file", "/../new_file");
+
+        assertGetCanonicalPath_commonTestCases();
+    }
+
+    private void assertGetCanonicalPath_commonTestCases() throws IOException {
+        // "/.." is normally resolved by libc's realpath(3) regardless
+        // CANONICALIZE_PARENT_OF_ROOT_DIR is enabled or not.
+        assertGetCanonicalPath("/..", "/");
+        assertGetCanonicalPath("/../..", "/");
+        assertGetCanonicalPath("/../../abc", "/abc");
+        assertGetCanonicalPath("/../../abc/..", "/");
+        assertGetCanonicalPath("/../../abc/../def", "/def");
+        // getCanonicalPath treats relative path as absolute path in most cases.
+        assertGetCanonicalPath("..", "/");
+        assertGetCanonicalPath("../..", "/");
+        assertGetCanonicalPath("../../abc", "/abc");
+        assertGetCanonicalPath("../../abc/..", "/");
+        assertGetCanonicalPath("../../abc/../def", "/def");
+    }
+
+    private void assertGetCanonicalPath(String input, String expected) throws IOException {
+        File file = new File(input);
+        assertEquals(expected, file.getCanonicalPath());
     }
 
 }
