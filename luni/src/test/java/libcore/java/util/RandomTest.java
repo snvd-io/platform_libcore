@@ -22,9 +22,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import libcore.junit.util.compat.CoreCompatChangeRule;
 import libcore.junit.util.compat.CoreCompatChangeRule.DisableCompatChanges;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
@@ -33,6 +36,9 @@ import java.util.Random;
 
 @RunWith(JUnit4.class)
 public class RandomTest {
+
+    @Rule
+    public final TestRule compatChangeRule = new CoreCompatChangeRule();
 
     @Test
     public void test_subclassing() throws Exception {
