@@ -30,6 +30,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import dalvik.annotation.compat.VersionCodes;
 import dalvik.system.VMRuntime;
 
+import libcore.junit.util.compat.CoreCompatChangeRule;
 import libcore.junit.util.compat.CoreCompatChangeRule.DisableCompatChanges;
 import libcore.junit.util.compat.CoreCompatChangeRule.EnableCompatChanges;
 import libcore.test.annotation.NonMts;
@@ -37,7 +38,9 @@ import libcore.test.reasons.NonMtsReasons;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,6 +62,9 @@ import java.util.TimeZone;
 
 @SuppressWarnings("FormatString")
 public class FormatterTest {
+
+    @Rule
+    public final TestRule compatChangeRule = new CoreCompatChangeRule();
 
     private File aFile;
 
