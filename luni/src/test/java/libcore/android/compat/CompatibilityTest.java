@@ -32,6 +32,7 @@ import android.compat.Compatibility.ChangeConfig;
 import android.compat.Compatibility.BehaviorChangeDelegate;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -39,9 +40,16 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class CompatibilityTest {
 
+    private BehaviorChangeDelegate mDelegate;
+
+    @Before
+    public void setUp() {
+        mDelegate = Compatibility.getBehaviorChangeDelegate();
+    }
+
     @After
     public void reset() {
-        Compatibility.clearBehaviorChangeDelegate();
+        Compatibility.setBehaviorChangeDelegate(mDelegate);
     }
 
     @Test
