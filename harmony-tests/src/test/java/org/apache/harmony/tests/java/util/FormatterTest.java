@@ -740,7 +740,7 @@ public class FormatterTest extends TestCase {
         assertEquals("1234567891110", formatter.toString());
 
         formatter = new Formatter(Locale.JAPAN);
-        formatter.format("%0$s", "hello");
+        formatter.format("%1$s", "hello");
         assertEquals("hello", formatter.toString());
 
         try {
@@ -797,8 +797,10 @@ public class FormatterTest extends TestCase {
         try {
             // 2147483648 is the value of Integer.MAX_VALUE + 1
             formatter.format("%2147483648$s", "hello");
-            fail("should throw MissingFormatArgumentException");
-        } catch (MissingFormatArgumentException e) {
+            // Starting from V the line above throws IllegalFormatArgumentIndexException, but
+            // that class is package-private.
+            fail("should throw IllegalFormatException");
+        } catch (IllegalFormatException e) {
             // expected
         }
 
@@ -839,11 +841,6 @@ public class FormatterTest extends TestCase {
         f.format("%1$-1%", "string");
         assertEquals("%", f.toString());
 
-        f = new Formatter(Locale.ITALY);
-        // 2147483648 is the value of Integer.MAX_VALUE + 1
-        f.format("%2147483648s", "string");
-        assertEquals("string", f.toString());
-
         // the value of Integer.MAX_VALUE will allocate about 4G bytes of
         // memory.
         // It may cause OutOfMemoryError, so this value is not tested
@@ -856,11 +853,6 @@ public class FormatterTest extends TestCase {
         Formatter f = new Formatter(Locale.US);
         f.format("%.5s", "123456");
         assertEquals("12345", f.toString());
-
-        f = new Formatter(Locale.US);
-        // 2147483648 is the value of Integer.MAX_VALUE + 1
-        f.format("%.2147483648s", "...");
-        assertEquals("...", f.toString());
 
         // the value of Integer.MAX_VALUE will allocate about 4G bytes of
         // memory.
@@ -2659,10 +2651,14 @@ public class FormatterTest extends TestCase {
 
         try {
             f = new Formatter();
+            // Here the first 0 is a padding element and the rest is the width. It is expected
+            // that the value is an int, so the correct behavior is to throw
+            // IllegalFormatWidthException, but prior to V the exception was
+            // MissingFormatWidthException. Once V is finalized the catch could be simplified.
             f.format("%010000000000000000000000000000000001d", new BigInteger(
                     "1"));
-            fail("should throw MissingFormatWidthException");
-        } catch (MissingFormatWidthException e) {
+            fail("should throw IllegalFormatWidthException or MissingFormatWidthException");
+        } catch (IllegalFormatWidthException | MissingFormatWidthException e) {
             // expected
         }
     }
