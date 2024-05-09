@@ -740,7 +740,7 @@ public class FormatterTest extends TestCase {
         assertEquals("1234567891110", formatter.toString());
 
         formatter = new Formatter(Locale.JAPAN);
-        formatter.format("%0$s", "hello");
+        formatter.format("%1$s", "hello");
         assertEquals("hello", formatter.toString());
 
         try {
