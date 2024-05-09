@@ -114,6 +114,17 @@ public final class Compatibility {
     }
 
     /**
+     * Return the behavior change delegate
+     *
+     * @hide
+     */
+    // VisibleForTesting
+    @NonNull
+    public static BehaviorChangeDelegate getBehaviorChangeDelegate() {
+        return sCallbacks;
+    }
+
+    /**
      * For use by tests only. Causes values from {@code overrides} to be returned instead of the
      * real value.
      *
