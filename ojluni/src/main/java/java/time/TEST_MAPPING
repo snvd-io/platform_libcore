@@ -24,5 +24,12 @@
         }
       ]
     }
+  ],
+  // TODO(b/339653302) move to presubmit-large above in Mid May 2024 after SLO checks
+  // and updating tradefed with new large target
+  "postsubmit": [
+    {
+      "name": "CtsLibcoreOjTestCases_time"
+    }
   ]
 }
