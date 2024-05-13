@@ -20,7 +20,6 @@
 
 cc_defaults {
     name: "core_native_default_flags",
-    defaults: ["art_module_source_build_defaults"],
     host_supported: true,
     cflags: [
         "-Wall",
@@ -31,6 +30,9 @@ cc_defaults {
 
     target: {
         darwin: {
+            enabled: false,
+        },
+        windows: {
             enabled: false,
         },
     },
