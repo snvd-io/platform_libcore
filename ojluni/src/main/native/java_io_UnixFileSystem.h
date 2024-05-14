@@ -60,9 +60,7 @@ extern "C" {
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_java_io_UnixFileSystem_canonicalize0
-  (JNIEnv *, jobject, jstring,
-  // Android-added: Remove parent directory /.. at the rootfs. http://b/312399441
-  jboolean);
+  (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     java_io_UnixFileSystem
