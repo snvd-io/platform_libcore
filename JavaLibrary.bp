@@ -951,11 +951,19 @@ droidstubs {
 // libcore/luni/annotations/flagged_api.
 droidstubs {
     name: "libart-sdk-stubs-no-javadoc",
-    srcs: [":core_libart_api_files"],
+    srcs: [
+        ":core_libart_api_files",
+        // The definition of @SystemApi is needed to generate module-lib stubs.
+        ":framework-api-annotations",
+    ],
     installable: false,
     sdk_version: "none",
     system_modules: "none",
-    args: "--exclude-documentation-from-stubs",
+    api_levels_sdk_type: "module-lib",
+    flags: [
+        "--exclude-documentation-from-stubs",
+        "--show-for-stub-purposes-annotation android.annotation.SystemApi\\(client=android.annotation.SystemApi.Client.MODULE_LIBRARIES\\)",
+    ],
 }
 
 // Separate @FlaggedApi annotations for luni/ to avoid a circular dependency between
