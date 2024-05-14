@@ -16,6 +16,9 @@
 
 package libcore.java.util.zip;
 
+import libcore.test.annotation.NonCts;
+import libcore.test.reasons.NonCtsReasons;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,6 +38,7 @@ public final class ZipFileTest extends AbstractZipFileTest {
     }
 
     // b/31077136
+    @NonCts(bug = 338503591, reason = NonCtsReasons.NON_BREAKING_BEHAVIOR_FIX)
     public void test_FileNotFound() throws Exception {
         File nonExistentFile = new File("fileThatDefinitelyDoesntExist.zip");
         assertFalse(nonExistentFile.exists());
