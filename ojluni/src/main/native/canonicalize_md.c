@@ -27,7 +27,6 @@
  * Pathname canonicalization for Unix file systems
  */
 
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -166,16 +165,12 @@ joinNames(char *names, int nc, char **ix)
    after invoking the realpath() procedure. */
 
 static void
-collapse(char *path,
-         // Android-added: Remove parent directory /.. at the rootfs. http://b/312399441
-         bool isAtLeastTargetSdk35)
+collapse(char *path)
 {
     // Android-changed: Remove consecutive duplicate path separators "//". b/267617531
     removeDupSeparator(path);
 
-    // Android-changed: Remove parent directory /.. at the rootfs. http://b/312399441
-    bool isPathAbsolute = (path[0] == '/');
-    char *names = isPathAbsolute ? path + 1 : path; /* Preserve first '/' */
+    char *names = (path[0] == '/') ? path + 1 : path; /* Preserve first '/' */
     int nc;
     char **ix;
     int i, j;
@@ -216,18 +211,12 @@ collapse(char *path,
             ix[i] = 0;
         }
         else {
-            /* If there is a preceding name and at the rootfs, remove both that name and this
+            /* If there is a preceding name, remove both that name and this
                instance of ".."; otherwise, leave the ".." as is */
             for (j = i - 1; j >= 0; j--) {
                 if (ix[j]) break;
             }
-            if (j < 0) {
-                // Android-added: Remove parent directory /.. at the rootfs. http://b/312399441
-                if (isPathAbsolute && isAtLeastTargetSdk35) {
-                    ix[i] = 0;
-                }
-                continue;
-            }
+            if (j < 0) continue;
             ix[j] = 0;
             ix[i] = 0;
         }
@@ -246,9 +235,7 @@ collapse(char *path,
 // Android-changed: hidden to avoid conflict with libm (b/135018555)
 __attribute__((visibility("hidden")))
 int
-canonicalize(char *original, char *resolved, int len,
-             // Android-added: Remove parent directory /.. at the rootfs. http://b/312399441
-             bool isAtLeastTargetSdk35)
+canonicalize(char *original, char *resolved, int len)
 {
     if (len < PATH_MAX) {
         errno = EINVAL;
@@ -265,9 +252,7 @@ canonicalize(char *original, char *resolved, int len,
     /* First try realpath() on the entire path */
     if (realpath(original, resolved)) {
         /* That worked, so return it */
-         // Android-changed: Remove parent directory /.. at the rootfs. http://b/312399441
-        // collapse(resolved);
-        collapse(resolved, isAtLeastTargetSdk35);
+        collapse(resolved);
         return 0;
     }
     else {
@@ -341,18 +326,14 @@ canonicalize(char *original, char *resolved, int len,
                 p++;
             }
             strcpy(r + rn, p);
-            // Android-changed: Remove parent directory /.. at the rootfs. http://b/312399441
-            // collapse(r);
-            collapse(r, isAtLeastTargetSdk35);
+            collapse(r);
         }
         else {
             /* Nothing resolved, so just return the original path */
             // Android-changed: Avoid crash in getCanonicalPath() due to a long path. b/266432364
             nameMax = pathconf("/", _PC_NAME_MAX);
             strcpy(resolved, path);
-            // Android-changed: Remove parent directory /.. at the rootfs. http://b/312399441
-            // collapse(resolved);
-            collapse(resolved, isAtLeastTargetSdk35);
+            collapse(resolved);
         }
 
         // BEGIN Android-added: Avoid crash in getCanonicalPath() due to a long path. b/266432364
