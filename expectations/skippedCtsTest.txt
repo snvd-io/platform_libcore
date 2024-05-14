@@ -127,5 +127,24 @@
     "names": [
       "org.apache.harmony.tests.java.util.PriorityQueueTest#test_spliterator_CME"
     ]
+  },
+  {
+    "bug": 338503591,
+    "description": "Test for internal APIs.",
+    "names": [
+      "libcore.java.util.LinkedHashMapTest#test_entryCompatibility_runtime",
+      "libcore.java.util.zip.ZipFileTest#testZipFileOffsetNeverChangesAfterInit",
+      "libcore.jdk.internal.misc.SharedSecretsTest#testGetJavaIOFileDescriptorAccess_notNull"
+    ]
+  },
+  {
+    "bug": 338503591,
+    "description": "The test asserts buggy or non-breaking behaviors, but the behavior has been fixed in a new mainline module version.",
+    "names": [
+      "libcore.java.lang.OldClassTest#test_getGenericInterfaces",
+      "libcore.java.lang.reflect.OldAndroidClassTest#testClassGetMethodsNoDupes",
+      "libcore.java.util.zip.ZipFileTest#test_FileNotFound",
+      "org.apache.harmony.tests.java.util.zip.DeflaterTest#test_finalize"
+    ]
   }
 ]
