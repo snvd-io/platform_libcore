@@ -27,9 +27,13 @@ import java.lang.annotation.Target;
  * Note that every annotation element below should be associated to a field in
  * {@link vogar.expect.Expectation}, because it will be de- and serialized by
  * {@link vogar.expect.ExpectationStore} for back-porting to an older branch.
+ *
+ * @deprecated All CTS modules supporting @NonCts annotations are expected to migrate to MCTS.
+ * Please use {@link NonMts} to skip test in the MCTS instead.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
+@Deprecated
 public @interface NonCts {
     /**
      * Optional bug id showing why this test fails / shouldn't run in MTS.
