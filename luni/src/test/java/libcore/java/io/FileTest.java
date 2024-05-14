@@ -29,16 +29,36 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 import libcore.io.Libcore;
+import libcore.junit.util.compat.CoreCompatChangeRule;
 
 import static android.system.Os.stat;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeTrue;
 
-public class FileTest extends junit.framework.TestCase {
+import dalvik.annotation.compat.VersionCodes;
+import dalvik.system.VMRuntime;
+
+import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestRule;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class FileTest {
 
     static {
         System.loadLibrary("javacoretests");
     }
+
+
+    @Rule
+    public final TestRule compatChangeRule = new CoreCompatChangeRule();
 
     private static File createTemporaryDirectory() throws Exception {
         String base = System.getProperty("java.io.tmpdir");
@@ -71,6 +91,7 @@ public class FileTest extends junit.framework.TestCase {
 
     // Rather than test all methods, assume that if createTempFile creates a long path and
     // exists can see it, the code for coping with long paths (shared by all methods) works.
+    @Test
     public void test_longPath() throws Exception {
         File base = createTemporaryDirectory();
         assertTrue(createDeepStructure(base).exists());
@@ -83,6 +104,7 @@ public class FileTest extends junit.framework.TestCase {
      * isn't true on Android if you're using /sdcard (which is used if this test is
      * run using vogar). It will work in /data/data/ though.
      */
+    @Test
     public void test_longReadlink() throws Exception {
         File base = createTemporaryDirectory();
         File target = createDeepStructure(base);
@@ -98,6 +120,7 @@ public class FileTest extends junit.framework.TestCase {
     // TODO: File.list is a special case too, but I haven't fixed it yet, and the new code,
     // like the old code, will die of a native buffer overrun if we exercise it.
 
+    @Test
     public void test_emptyFilename() throws Exception {
         // The behavior of the empty filename is an odd mixture.
         File f = new File("");
@@ -149,6 +172,7 @@ public class FileTest extends junit.framework.TestCase {
 
     // http://b/2486943 - between eclair and froyo, we added a call to
     // isAbsolute from the File constructor, potentially breaking subclasses.
+    @Test
     public void test_subclassing() throws Exception {
         class MyFile extends File {
             private String field;
@@ -171,6 +195,7 @@ public class FileTest extends junit.framework.TestCase {
      * isn't true on Android if you're using /sdcard (which is used if this test is
      * run using vogar). It will work in /data/data/ though.
      */
+    @Test
     public void test_getCanonicalPath() throws Exception {
         File base = createTemporaryDirectory();
         File target = new File(base, "target");
@@ -207,6 +232,7 @@ public class FileTest extends junit.framework.TestCase {
         Libcore.os.symlink(target, linkName);
     }
 
+    @Test
     public void test_createNewFile() throws Exception {
         File f = File.createTempFile("FileTest", "tmp");
         assertFalse(f.createNewFile()); // EEXIST -> false
@@ -223,6 +249,7 @@ public class FileTest extends junit.framework.TestCase {
         }
     }
 
+    @Test
     public void test_rename() throws Exception {
         File f = File.createTempFile("FileTest", "tmp");
         assertFalse(f.renameTo(new File("")));
@@ -231,6 +258,7 @@ public class FileTest extends junit.framework.TestCase {
         assertTrue(f.renameTo(f));
     }
 
+    @Test
     public void test_getAbsolutePath() throws Exception {
         String userDir = System.getProperty("user.dir");
         if (!userDir.endsWith(File.separator)) {
@@ -241,12 +269,14 @@ public class FileTest extends junit.framework.TestCase {
         assertEquals(userDir + "poop", f.getAbsolutePath());
     }
 
+    @Test
     public void test_getSpace() throws Exception {
         assertTrue(new File("/").getFreeSpace() >= 0);
         assertTrue(new File("/").getTotalSpace() >= 0);
         assertTrue(new File("/").getUsableSpace() >= 0);
     }
 
+    @Test
     public void test_mkdirs() throws Exception {
         // Set up a directory to test in.
         File base = createTemporaryDirectory();
@@ -290,6 +320,7 @@ public class FileTest extends junit.framework.TestCase {
 
     // http://b/23523042 : Test that creating a directory and file with
     // a surrogate pair in the name works as expected and roundtrips correctly.
+    @Test
     public void testFilesWithSurrogatePairs() throws Exception {
         File base = createTemporaryDirectory();
         // U+13000 encodes to the surrogate pair D80C + DC00 in UTF16
@@ -319,6 +350,7 @@ public class FileTest extends junit.framework.TestCase {
     // SECCOMP filter. The SECCOMP filter is designed to not allow stat(fstatat64/newfstatat) calls
     // and whenever a thread makes the system call, android.system.ErrnoException
     // (EPERM - Operation not permitted) will be raised.
+    @Test
     public void testExistsOnSystem() throws ErrnoException, IOException {
         File tmpFile = File.createTempFile("testExistsOnSystem", ".tmp");
         try {
@@ -343,6 +375,7 @@ public class FileTest extends junit.framework.TestCase {
     // OpenJdk is treating empty parent string as a special case,
     // it substitutes parent string with the filesystem default parent value "/"
     // This wasn't the case before the switch to openJdk.
+    @Test
     public void testEmptyParentString() {
         File f1 = new File("", "foo.bar");
         File f2 = new File((String)null, "foo.bar");
@@ -351,6 +384,7 @@ public class FileTest extends junit.framework.TestCase {
     }
 
     // http://b/27273930
+    @Test
     public void testJavaIoTmpdirMutable() throws Exception {
         final String oldTmpDir = System.getProperty("java.io.tmpdir");
         final String directoryName = "/newTemp" + Integer.toString(Math.randomIntInternal());
@@ -369,12 +403,14 @@ public class FileTest extends junit.framework.TestCase {
     private static native void nativeTestFilesWithSurrogatePairs(String base);
 
     // http://b/27731686
+    @Test
     public void testBug27731686() {
         File file = new File("/test1", "/");
         assertEquals("/test1", file.getPath());
         assertEquals("test1", file.getName());
     }
 
+    @Test
     public void testFileNameNormalization() {
         assertEquals("/", new File("/", "/").getPath());
         assertEquals("/", new File("/", "").getPath());
@@ -385,6 +421,7 @@ public class FileTest extends junit.framework.TestCase {
         assertEquals("/foo/bar", new File("/foo", "/bar//").getPath());
     }
 
+    @Test
     public void test_toPath() {
         File file = new File("testPath");
         Path filePath = file.toPath();
@@ -398,6 +435,7 @@ public class FileTest extends junit.framework.TestCase {
     }
 
     // http://b/62301183
+    @Test
     public void test_canonicalCachesAreOff() throws Exception {
         File tempDir = createTemporaryDirectory();
         File f1 = new File(tempDir, "testCannonCachesOff1");
@@ -418,6 +456,7 @@ public class FileTest extends junit.framework.TestCase {
         assertEquals(symlinkFile.getCanonicalPath(), f2.getCanonicalPath());
     }
 
+    @Test
     public void testGetCanonicalPath_duplicatePathSeparator() throws Exception {
         assertCanonicalPath("/a//./b", "/a/b");
         assertCanonicalPath("//a//b", "/a/b");
@@ -434,8 +473,53 @@ public class FileTest extends junit.framework.TestCase {
         assertEquals(expected, file.getCanonicalFile().getPath());
     }
 
+    @Test
     public void testGetCanonicalPath_longPath() {
         String p = "/a".repeat(2048);
         Assert.assertThrows(IOException.class, () -> new File(p).getCanonicalFile());
     }
+
+    @Test
+    @CoreCompatChangeRule.EnableCompatChanges({File.CANONICALIZE_PARENT_OF_ROOT_DIR})
+    public void testGetCanonicalPath_parentOfRootPath_afterU_whenChecksAreEnabled()
+            throws IOException {
+        assertGetCanonicalPath_commonTestCases();
+
+        var msg = "CANONICALIZE_PARENT_OF_ROOT_DIR change is are done only starting from V. "
+                + "Current SDK=" + VMRuntime.getSdkVersion();
+        assumeTrue(msg, VMRuntime.getSdkVersion() >= VersionCodes.VANILLA_ICE_CREAM);
+        assertGetCanonicalPath("/non_existing/directory/../../../new_file", "/new_file");
+        assertGetCanonicalPath("/non/existing/directory/../../../../new_file", "/new_file");
+    }
+
+    @Test
+    @CoreCompatChangeRule.DisableCompatChanges({File.CANONICALIZE_PARENT_OF_ROOT_DIR})
+    public void testGetCanonicalPath_parentOfRootPath_whenChecksAreDisabled() throws IOException {
+        assertGetCanonicalPath("/non_existing/directory/../../../new_file", "/../new_file");
+        assertGetCanonicalPath("/non/existing/directory/../../../../new_file", "/../new_file");
+
+        assertGetCanonicalPath_commonTestCases();
+    }
+
+    private void assertGetCanonicalPath_commonTestCases() throws IOException {
+        // "/.." is normally resolved by libc's realpath(3) regardless
+        // CANONICALIZE_PARENT_OF_ROOT_DIR is enabled or not.
+        assertGetCanonicalPath("/..", "/");
+        assertGetCanonicalPath("/../..", "/");
+        assertGetCanonicalPath("/../../abc", "/abc");
+        assertGetCanonicalPath("/../../abc/..", "/");
+        assertGetCanonicalPath("/../../abc/../def", "/def");
+        // getCanonicalPath treats relative path as absolute path in most cases.
+        assertGetCanonicalPath("..", "/");
+        assertGetCanonicalPath("../..", "/");
+        assertGetCanonicalPath("../../abc", "/abc");
+        assertGetCanonicalPath("../../abc/..", "/");
+        assertGetCanonicalPath("../../abc/../def", "/def");
+    }
+
+    private void assertGetCanonicalPath(String input, String expected) throws IOException {
+        File file = new File(input);
+        assertEquals(expected, file.getCanonicalPath());
+    }
+
 }
