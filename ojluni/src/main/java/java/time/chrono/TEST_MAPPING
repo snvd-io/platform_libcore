@@ -9,23 +9,6 @@
       ]
     },
     {
-      "name": "CtsLibcoreOjTestCases",
-      "options": [
-        {
-          "include-filter": "tck.java.time.chrono.serial"
-        },
-        {
-          "include-filter": "tck.java.time.chrono"
-        },
-        {
-          "include-filter": "test.java.time.chrono"
-        }
-      ]
-    }
-  ],
-  // TODO(b/339653302) move to presubmit above in Mid May 2024 after SLO checks
-  "postsubmit": [
-    {
       "name": "CtsLibcoreOjTestCases_time_chrono"
     }
   ]
