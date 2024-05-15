@@ -69,12 +69,12 @@ cc_library_shared {
     ],
     shared_libs: [
         "libandroidio",
-        "libcrypto",
         "libicu",
         "libexpat",
         "libz",
     ],
     static_libs: [
+        "libcrypto_for_art",
         "libziparchive",
     ],
     version_script: "libjavacore.map",
@@ -129,11 +129,11 @@ cc_defaults {
 
     shared_libs: [
         "libandroidio",
-        "libcrypto",
         "libicu",
         "libz",
     ],
     static_libs: [
+        "libcrypto_for_art",
         "libfdlibm",
     ],
 
