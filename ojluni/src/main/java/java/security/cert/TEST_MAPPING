@@ -18,17 +18,6 @@
       ]
     },
     {
-      "name": "CtsLibcoreOjTestCases",
-      "options": [
-        {
-          "include-filter": "test.java.security.cert"
-        }
-      ]
-    }
-  ],
-  // TODO(b/339653302) move to presubmit above in Mid May 2024 after SLO checks
-  "postsubmit": [
-    {
       "name": "CtsLibcoreOjTestCases_security_cert"
     }
   ]
