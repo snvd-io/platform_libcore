@@ -16,6 +16,9 @@
 
 package libcore.java.lang;
 
+import libcore.test.annotation.NonCts;
+import libcore.test.reasons.NonCtsReasons;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -424,6 +427,7 @@ public class OldClassTest extends junit.framework.TestCase {
     public enum TestEmptyEnum {
     }
 
+    @NonCts(bug = 338503591, reason = NonCtsReasons.NON_BREAKING_BEHAVIOR_FIX)
     public void test_getGenericInterfaces() {
         Type [] types = ExtendTestClass1.class.getGenericInterfaces();
         assertEquals(0, types.length);
