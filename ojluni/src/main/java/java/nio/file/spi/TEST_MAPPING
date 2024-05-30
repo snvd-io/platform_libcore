@@ -1,12 +1,7 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases",
-      "options": [
-        {
-          "include-filter": "libcore.java.nio.file.spi"
-        }
-      ]
+      "name": "CtsLibcoreTestCases_nio_file_spi"
     }
   ]
 }
