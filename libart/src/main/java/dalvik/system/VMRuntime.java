@@ -1078,4 +1078,10 @@ public final class VMRuntime {
     public static boolean isM202409RampEnabled() {
         return com.android.art.flags.Flags.m202409Ramp();
     }
+
+    /**
+     * Returns the full GC count - how many times did full GC happen
+     * @hide
+     */
+    public static native long getFullGcCount();
 }

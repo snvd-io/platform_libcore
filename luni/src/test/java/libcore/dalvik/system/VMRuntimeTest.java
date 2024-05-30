@@ -157,5 +157,12 @@ public final class VMRuntimeTest {
         // the flag is turned on in all configurations.
         Assume.assumeTrue(b);
     }
+
+    @Test
+    public void testGetFullGcCount() {
+        long gcCount = VMRuntime.getFullGcCount();
+        // full GC count needs to be larger or equal to 0
+        assertTrue("Full GC count needs to be non-negative", gcCount >= 0);
+    }
 }
 
