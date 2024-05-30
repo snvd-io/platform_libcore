@@ -1012,7 +1012,11 @@ aconfig_declarations {
     name: "libcore_aconfig_flags",
     package: "com.android.libcore",
     container: "com.android.art",
+    exportable: true,
     srcs: ["libcore.aconfig"],
+    visibility: [
+        "//frameworks/base",
+    ],
 }
 
 java_aconfig_library {
