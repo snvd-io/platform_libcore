@@ -37,3 +37,13 @@ flag {
     # APIs provided by a mainline module can only use a frozen flag.
     is_fixed_read_only: true
 }
+
+flag {
+    namespace: "devtools"
+    name: "appinfo"
+    is_exported: true
+    description: "This flag controls whether Frameworks sends app info to adb so debuggers can attach"
+    bug: "333161320"
+    # APIs provided by a mainline module can only use a frozen flag.
+    is_fixed_read_only: true
+}
