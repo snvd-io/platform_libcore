@@ -19,7 +19,10 @@ package dalvik.system;
 import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
 
 import android.annotation.SystemApi;
+import android.annotation.UserIdInt;
 import android.compat.annotation.UnsupportedAppUsage;
+
+import libcore.util.NonNull;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -673,4 +676,57 @@ public final class VMDebug {
      */
     @SystemApi(client = MODULE_LIBRARIES)
     public static native void setAllocTrackerStackDepth(int stackDepth);
+
+    /**
+     * Called every time the Process is renamed (via android.os.Process)
+     * This is a no-op on host.
+     *
+     * @param processName The new name of the process.
+     *
+     * @hide
+     **/
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static native void setCurrentProcessName(@NonNull String processName);
+
+    /**
+     * Called every time an app is added to the current Process
+     * This is a no-op on host.
+     *
+     * @param packageName The package name of the added app.
+     *
+     * @hide
+     **/
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static native void addApplication(@NonNull String packageName);
+
+    /**
+     * Called every time an app is removed from the current Process
+     * This is a no-op on host.
+     *
+     * @param packageName The package name of the removed app.
+     *
+     * @hide
+     **/
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static native void removeApplication(@NonNull String packageName);
+
+    /**
+     * Called as soon as Zygote specialize and knows the Android User ID.
+     * This is a no-op on host.
+     *
+     * @param userId The Android User ID.
+     *
+     * @hide
+     **/
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static native void setUserId(@UserIdInt int userId);
+
+    /**
+     * Signal to ART we are waiting for the debugger
+     * This is a no-op on host.
+     *
+     * @hide
+     */
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static native void setWaitingForDebugger(boolean waiting);
 }
