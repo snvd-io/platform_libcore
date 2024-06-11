@@ -17,6 +17,9 @@
 package libcore.android.compat;
 
 import dalvik.annotation.compat.VersionCodes;
+
+import libcore.test.annotation.NonMts;
+
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Test;
@@ -32,6 +35,7 @@ public class VersionCodesTest {
      * Ensure that the latest entries in {@link VersionCodes} and
      * {@link android.os.Build.VERSION_CODES} are consistent.
      */
+    @NonMts(bug = 345122173, reason = "SDK level isn't finalized on the older platforms.")
     @Test
     public void valuesInVersionCodesAndFrameworksBuild_areConsistent() {
         for (String field : List.of("UPSIDE_DOWN_CAKE", "VANILLA_ICE_CREAM")) {
