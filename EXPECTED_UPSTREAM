@@ -268,7 +268,6 @@ ojluni/src/main/java/java/lang/invoke/MethodHandles.java,jdk8u/jdk8u121-b13,jdk/
 ojluni/src/main/java/java/lang/invoke/MethodType.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/lang/invoke/MethodType.java
 ojluni/src/main/java/java/lang/invoke/MethodTypeForm.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/lang/invoke/MethodTypeForm.java
 ojluni/src/main/java/java/lang/invoke/MutableCallSite.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/lang/invoke/MutableCallSite.java
-ojluni/src/main/java/java/lang/invoke/Stable.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/lang/invoke/Stable.java
 ojluni/src/main/java/java/lang/invoke/TypeDescriptor.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/invoke/TypeDescriptor.java
 # java.lang.invoke.Transformers isn't in the upstream OpenJDK
 ojluni/src/main/java/java/lang/invoke/VarHandle.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/java/lang/invoke/VarHandle.java

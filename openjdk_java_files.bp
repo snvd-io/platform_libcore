@@ -269,7 +269,6 @@ filegroup {
         "ojluni/src/main/java/java/lang/invoke/MethodType.java",
         "ojluni/src/main/java/java/lang/invoke/MethodTypeForm.java",
         "ojluni/src/main/java/java/lang/invoke/MutableCallSite.java",
-        "ojluni/src/main/java/java/lang/invoke/Stable.java",
         "ojluni/src/main/java/java/lang/invoke/Transformers.java",
         "ojluni/src/main/java/java/lang/invoke/TypeDescriptor.java",
         "ojluni/src/main/java/java/lang/invoke/VarHandle.java",
