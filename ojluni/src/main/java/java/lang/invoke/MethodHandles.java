@@ -39,6 +39,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import jdk.internal.vm.annotation.Stable;
 
 import static java.lang.invoke.MethodHandleStatics.*;
 import static java.lang.invoke.MethodHandleStatics.newIllegalArgumentException;
