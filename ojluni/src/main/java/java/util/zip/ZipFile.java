@@ -1436,7 +1436,18 @@ public class ZipFile implements ZipConstants, Closeable {
                 initCEN(-1);
                 byte[] buf = new byte[4];
                 readFullyAt(buf, 0, 4, 0);
-                this.startsWithLoc = (LOCSIG(buf) == LOCSIG);
+                // BEGIN Android-changed: do not accept files with invalid header
+                // this.startsWithLoc = (LOCSIG(buf) == LOCSIG);
+                long locsig = LOCSIG(buf);
+                this.startsWithLoc = (locsig == LOCSIG);
+                // If a zip file starts with "end of central directory record" it means that such
+                // file is empty.
+                if (locsig != LOCSIG && locsig != ENDSIG) {
+                    String msg = "Entry at offset zero has invalid LFH signature "
+                                    + Long.toHexString(locsig);
+                    throw new ZipException(msg);
+                }
+                // END Android-changed: do not accept files with invalid header
             } catch (IOException x) {
                 try {
                     this.zfile.close();
