@@ -125,6 +125,7 @@ ojluni/src/main/java/java/lang/ArrayIndexOutOfBoundsException.java,jdk17u/jdk-17
 ojluni/src/main/java/java/lang/ArrayStoreException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/ArrayStoreException.java
 ojluni/src/main/java/java/lang/AssertionError.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/AssertionError.java
 ojluni/src/main/java/java/lang/AutoCloseable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/AutoCloseable.java
+ojluni/src/main/java/java/lang/BaseVirtualThread.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/java/lang/BaseVirtualThread.java
 ojluni/src/main/java/java/lang/Boolean.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/Boolean.java
 ojluni/src/main/java/java/lang/BootstrapMethodError.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/BootstrapMethodError.java
 ojluni/src/main/java/java/lang/Byte.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/Byte.java
@@ -1412,6 +1413,11 @@ ojluni/src/main/java/jdk/internal/access/JavaIOFileDescriptorAccess.java,jdk17u/
 ojluni/src/main/java/jdk/internal/access/JavaObjectInputStreamAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/JavaObjectInputStreamAccess.java
 ojluni/src/main/java/jdk/internal/access/JavaUtilCollectionAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/JavaUtilCollectionAccess.java
 ojluni/src/main/java/jdk/internal/access/SharedSecrets.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/SharedSecrets.java
+ojluni/src/main/java/jdk/internal/event/Event.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/event/Event.java
+ojluni/src/main/java/jdk/internal/event/VirtualThreadEndEvent.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/event/VirtualThreadEndEvent.java
+ojluni/src/main/java/jdk/internal/event/VirtualThreadPinnedEvent.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/event/VirtualThreadPinnedEvent.java
+ojluni/src/main/java/jdk/internal/event/VirtualThreadStartEvent.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/event/VirtualThreadStartEvent.java
+ojluni/src/main/java/jdk/internal/event/VirtualThreadSubmitFailedEvent.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/event/VirtualThreadSubmitFailedEvent.java
 ojluni/src/main/java/jdk/internal/math/DoubleConsts.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/jdk/internal/math/DoubleConsts.java
 ojluni/src/main/java/jdk/internal/math/FDBigInteger.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/jdk/internal/math/FDBigInteger.java
 ojluni/src/main/java/jdk/internal/math/FloatConsts.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/jdk/internal/math/FloatConsts.java
@@ -1434,6 +1440,7 @@ ojluni/src/main/java/jdk/internal/util/Preconditions.java,jdk17u/jdk-17.0.6-ga,s
 ojluni/src/main/java/jdk/internal/util/StaticProperty.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/util/StaticProperty.java
 ojluni/src/main/java/jdk/internal/util/jar/JarIndex.java,jdk17u/jdk-17.0.5-ga,src/java.base/share/classes/jdk/internal/util/jar/JarIndex.java
 ojluni/src/main/java/jdk/internal/util/random/RandomSupport.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/util/random/RandomSupport.java
+ojluni/src/main/java/jdk/internal/vm/StackChunk.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/vm/StackChunk.java
 ojluni/src/main/java/jdk/internal/vm/annotation/Contended.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/Contended.java
 ojluni/src/main/java/jdk/internal/vm/annotation/IntrinsicCandidate.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/IntrinsicCandidate.java
 ojluni/src/main/java/jdk/internal/vm/annotation/ReservedStackAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/ReservedStackAccess.java
