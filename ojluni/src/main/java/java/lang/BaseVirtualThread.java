@@ -27,8 +27,9 @@ package java.lang;
 /**
  * Base class for virtual thread implementations.
  */
-sealed abstract class BaseVirtualThread extends Thread
-        permits VirtualThread, ThreadBuilders.BoundVirtualThread {
+// Android-changed: TODO(b/346542404): Import the permitted subclasses.
+/* sealed */ abstract class BaseVirtualThread extends Thread {
+        // permits VirtualThread, ThreadBuilders.BoundVirtualThread {
 
     /**
      * Initializes a virtual Thread.
