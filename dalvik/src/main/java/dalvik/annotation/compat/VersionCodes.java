@@ -94,5 +94,5 @@ public class VersionCodes {
      * Vanilla Ice Cream.
      */
     @IntraCoreApi
-    public static final int VANILLA_ICE_CREAM = CUR_DEVELOPMENT;
+    public static final int VANILLA_ICE_CREAM = 35;
 }
