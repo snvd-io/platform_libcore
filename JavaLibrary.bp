@@ -376,7 +376,7 @@ java_library {
             required: [
                 // Files used to simulate the /system, runtime APEX and tzdata
                 // APEX dir structure on host.
-                "icu_tzdata.dat_host_tzdata_apex",
+                "tzdata_icu_res_files_host_prebuilts",
                 "tzdata_host",
                 "tzdata_host_tzdata_apex",
                 "tzlookup.xml_host_tzdata_apex",
