@@ -1,12 +1,7 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases",
-      "options": [
-        {
-          "include-filter": "libcore.java.util.function"
-        }
-      ]
+      "name": "CtsLibcoreTestCases_util_function"
     }
   ]
 }
