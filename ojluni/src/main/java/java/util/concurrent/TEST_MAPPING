@@ -9,12 +9,7 @@
       ]
     },
     {
-      "name": "CtsLibcoreTestCases",
-      "options": [
-        {
-          "include-filter": "libcore.java.util.concurrent"
-        }
-      ]
+      "name": "CtsLibcoreTestCases_util_concurrent"
     }
   ]
 }

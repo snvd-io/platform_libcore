@@ -39,6 +39,17 @@ flag {
 }
 
 flag {
+    namespace: "core_libraries"
+    name: "openjdk_21_v1_apis"
+    is_exported: true
+    description: "This flag includes OpenJDK 21 APIs released in 2025."
+    bug: "340486785"
+    # APIs provided by a mainline module can only use a frozen flag.
+    is_fixed_read_only: true
+}
+
+
+flag {
     namespace: "devtools"
     name: "appinfo"
     is_exported: true
