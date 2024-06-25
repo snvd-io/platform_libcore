@@ -1,7 +1,12 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_security_auth_login"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "org.apache.harmony.tests.javax.security.auth.login"
+        }
+      ]
     }
   ]
 }
