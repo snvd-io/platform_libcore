@@ -1,7 +1,15 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_xml_parsers"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "org.apache.harmony.tests.javax.xml.parsers"
+        },
+        {
+          "include-filter": "libcore.javax.xml.parsers"
+        }
+      ]
     }
   ]
 }
