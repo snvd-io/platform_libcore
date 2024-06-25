@@ -1,7 +1,12 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_crypto_interfaces"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "org.apache.harmony.crypto.tests.javax.crypto.interfaces"
+        }
+      ]
     }
   ]
 }

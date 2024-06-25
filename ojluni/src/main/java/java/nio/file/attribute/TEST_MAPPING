@@ -1,11 +1,15 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_nio_file_attribute"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "libcore.java.nio.file.attribute"
+        }
+      ]
     },
     {
       "name": "CtsLibcoreOjTestCases_nio_file_attribute"
     }
   ]
 }
-

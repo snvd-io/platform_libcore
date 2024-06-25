@@ -1,7 +1,15 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_security_spec"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "libcore.java.security.spec"
+        },
+        {
+          "include-filter": "tests.security.spec"
+        }
+      ]
     }
   ]
 }

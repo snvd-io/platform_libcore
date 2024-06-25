@@ -1,7 +1,12 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_security_interfaces"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "tests.security.interfaces"
+        }
+      ]
     }
   ]
 }

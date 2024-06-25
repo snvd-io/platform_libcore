@@ -1,7 +1,12 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_lang_invoke"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "libcore.java.lang.invoke"
+        }
+      ]
     },
     {
       "name": "CtsLibcoreOjTestCases",
