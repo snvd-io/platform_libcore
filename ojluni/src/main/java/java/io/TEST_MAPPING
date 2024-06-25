@@ -1,7 +1,18 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_java_io"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "libcore.java.io"
+        },
+        {
+          "include-filter": "org.apache.harmony.luni.tests.java.io"
+        },
+        {
+          "include-filter": "org.apache.harmony.tests.java.io"
+        }
+      ]
     }
   ]
 }

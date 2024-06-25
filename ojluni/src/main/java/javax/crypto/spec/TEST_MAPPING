@@ -1,7 +1,15 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_crypto_spec"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "org.apache.harmony.crypto.tests.javax.crypto.spec"
+        },
+        {
+          "include-filter": "libcore.javax.crypto.spec"
+        }
+      ]
     }
   ]
 }
