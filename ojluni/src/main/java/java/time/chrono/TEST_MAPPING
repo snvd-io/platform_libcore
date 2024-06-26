@@ -1,11 +1,15 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_time_chrono"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "libcore.java.time.chrono"
+        }
+      ]
     },
     {
       "name": "CtsLibcoreOjTestCases_time_chrono"
     }
   ]
 }
-

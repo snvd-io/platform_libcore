@@ -1,7 +1,15 @@
 {
   "presubmit": [
     {
-      "name": "CtsLibcoreTestCases_math"
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "include-filter": "org.apache.harmony.tests.java.math"
+        },
+        {
+          "include-filter": "libcore.java.math"
+        }
+      ]
     }
   ]
 }
