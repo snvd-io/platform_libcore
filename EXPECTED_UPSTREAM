@@ -171,6 +171,7 @@ ojluni/src/main/java/java/lang/LinkageError.java,jdk17u/jdk-17.0.6-ga,src/java.b
 ojluni/src/main/java/java/lang/LiveStackFrame.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/LiveStackFrame.java
 ojluni/src/main/java/java/lang/LiveStackFrameInfo.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/LiveStackFrameInfo.java
 ojluni/src/main/java/java/lang/Long.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/Long.java
+ojluni/src/main/java/java/lang/MatchException.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/lang/MatchException.java
 ojluni/src/main/java/java/lang/Math.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/lang/Math.java
 ojluni/src/main/java/java/lang/NegativeArraySizeException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/NegativeArraySizeException.java
 ojluni/src/main/java/java/lang/NoClassDefFoundError.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/NoClassDefFoundError.java
@@ -241,7 +242,7 @@ ojluni/src/main/java/java/lang/annotation/RetentionPolicy.java,jdk17u/jdk-17.0.6
 ojluni/src/main/java/java/lang/annotation/Target.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/annotation/Target.java
 ojluni/src/main/java/java/lang/annotation/package-info.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/annotation/package-info.java
 ojluni/src/main/java/java/lang/constant/AsTypeMethodHandleDesc.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/constant/AsTypeMethodHandleDesc.java
-ojluni/src/main/java/java/lang/constant/ClassDesc.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/constant/ClassDesc.java
+ojluni/src/main/java/java/lang/constant/ClassDesc.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/lang/constant/ClassDesc.java
 ojluni/src/main/java/java/lang/constant/Constable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/constant/Constable.java
 ojluni/src/main/java/java/lang/constant/ConstantDesc.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/constant/ConstantDesc.java
 ojluni/src/main/java/java/lang/constant/ConstantDescs.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/lang/constant/ConstantDescs.java
@@ -309,6 +310,7 @@ ojluni/src/main/java/java/lang/reflect/UndeclaredThrowableException.java,jdk11u/
 ojluni/src/main/java/java/lang/reflect/WeakCache.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/lang/reflect/WeakCache.java
 ojluni/src/main/java/java/lang/reflect/WildcardType.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/java/lang/reflect/WildcardType.java
 ojluni/src/main/java/java/lang/reflect/package-info.java,jdk8u/jdk8u121-b13,jdk/src/share/classes/java/lang/reflect/package-info.java
+ojluni/src/main/java/java/lang/runtime/SwitchBootstraps.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/lang/runtime/SwitchBootstraps.java
 ojluni/src/main/java/java/math/BigDecimal.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/math/BigDecimal.java
 ojluni/src/main/java/java/math/BigInteger.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/math/BigInteger.java
 ojluni/src/main/java/java/math/BitSieve.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/math/BitSieve.java
@@ -1410,6 +1412,7 @@ ojluni/src/main/java/javax/sql/StatementEventListener.java,jdk7u/jdk7u40-b60,jdk
 ojluni/src/main/java/jdk/internal/HotSpotIntrinsicCandidate.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/jdk/internal/HotSpotIntrinsicCandidate.java
 ojluni/src/main/java/jdk/internal/ValueBased.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/ValueBased.java
 ojluni/src/main/java/jdk/internal/access/JavaIOFileDescriptorAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/JavaIOFileDescriptorAccess.java
+ojluni/src/main/java/jdk/internal/access/JavaLangAccess.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/jdk/internal/access/JavaLangAccess.java
 ojluni/src/main/java/jdk/internal/access/JavaObjectInputStreamAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/JavaObjectInputStreamAccess.java
 ojluni/src/main/java/jdk/internal/access/JavaUtilCollectionAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/JavaUtilCollectionAccess.java
 ojluni/src/main/java/jdk/internal/access/SharedSecrets.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/access/SharedSecrets.java
