@@ -24,6 +24,8 @@ import android.compat.annotation.EnabledSince;
 import android.compat.annotation.Disabled;
 import android.compat.annotation.UnsupportedAppUsage;
 
+import com.android.libcore.Flags;
+
 import dalvik.annotation.compat.VersionCodes;
 import dalvik.annotation.optimization.FastNative;
 
@@ -1062,4 +1064,11 @@ public final class VMRuntime {
      * @hide
      */
     public static native DexFile.OptimizationInfo getBaseApkOptimizationInfo();
+
+    /**
+     * @hide for internal testing.
+     */
+    public static boolean isVTrunkStableFlagEnabled() {
+        return Flags.vApis();
+    }
 }
