@@ -133,5 +133,10 @@ public final class VMRuntimeTest extends TestCase {
         doTestNewUnpaddedArray(String.class, step, maxLengthForLoop);
         doTestNewUnpaddedArray(Runnable.class, step, maxLengthForLoop);
     }
+
+    public void testIsVTrunkStableFlagEnabled() {
+        // The flag should be on all stages, including trunk_staging and next.
+        assertTrue(VMRuntime.isVTrunkStableFlagEnabled());
+    }
 }
 
