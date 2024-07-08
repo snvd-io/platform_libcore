@@ -45,14 +45,14 @@ import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-// Android-changed: b/288912692 upgraded to JUnit4.
+// Android-changed: b/351566728 upgraded to JUnit4.
 // Added @RunWith class annotation, @Before and @After annotations, and @Test
 // annotations.
 // Changed assert* imports.
 @RunWith(JUnit4.class)
 public class TimerTest {
 
-    // Android-changed: b/288912692 need this to support added test cases.
+    // Android-changed: b/351566728 need this to support added test cases.
     @Rule
     public final TestRule compatChangeRule = new CoreCompatChangeRule();
 
@@ -867,7 +867,7 @@ public class TimerTest {
         }
     }
 
-    // Android-changed: b/288912692 added this test case to test new behavior.
+    // Android-changed: b/351566728 added this test case to test new behavior.
     @DisableCompatChanges({Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     @Test
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_disabled() throws Exception {
@@ -906,7 +906,7 @@ public class TimerTest {
         }
     }
 
-    // Android-changed: b/288912692 added this test case to test new behavior.
+    // Android-changed: b/351566728 added this test case to test new behavior.
     @EnableCompatChanges({Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     @Test
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_enabled() throws Exception {

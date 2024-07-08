@@ -109,7 +109,7 @@ public class Timer {
      */
     @ChangeId
     @EnabledAfter(targetSdkVersion = VersionCodes.VANILLA_ICE_CREAM)
-    public static final long SKIP_MULTIPLE_MISSED_PERIODIC_TASKS = 288912692L;
+    public static final long SKIP_MULTIPLE_MISSED_PERIODIC_TASKS = 351566728L;
 
     /**
      * The timer task queue.  This data structure is shared with the timer
@@ -554,7 +554,7 @@ class TimerThread extends Thread {
     /**
      * The main timer loop.  (See class comment.)
      */
-    // Android-changed: b/288912692 relax scheduling on missed repeating tasks.
+    // Android-changed: b/351566728 relax scheduling on missed repeating tasks.
     private void mainLoop() {
         while (true) {
             try {
