@@ -565,6 +565,7 @@ java_library_static {
     visibility: [
         "//art/build/sdk",
         "//frameworks/base/tests/PlatformCompatGating/test-rules",
+        "//libcore:__subpackages__",
     ],
     srcs: [
         "luni/src/main/java/android/compat/**/*.java",
