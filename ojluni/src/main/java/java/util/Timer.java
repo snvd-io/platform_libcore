@@ -359,6 +359,16 @@ public class Timer {
      * @throws IllegalStateException if task was already scheduled or
      *         cancelled, timer was cancelled, or timer thread terminated.
      * @throws NullPointerException if {@code task} is null
+     *
+     * <p>Since API level 31: If the app is frozen by the Android cached apps
+     * freezer before the fixed rate task is done or canceled, the task may run
+     * many times immediately when the app unfreezes, just as if a single
+     * execution of the command had taken the duration of the frozen period to
+     * execute.
+     *
+     * <p>Since API level 36: If any execution of this task takes longer than
+     * its period, then the subsequent execution will be scheduled for the most
+     * recent missed period.
      */
     public void scheduleAtFixedRate(TimerTask task, long delay, long period) {
         if (delay < 0)
