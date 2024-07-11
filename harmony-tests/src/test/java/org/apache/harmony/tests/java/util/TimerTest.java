@@ -23,7 +23,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
@@ -872,6 +874,7 @@ public class TimerTest {
     @Test
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_disabled() throws Exception {
         Timer t = null;
+        final List<Long> executionTimes = new ArrayList<>();
         try {
             final CountDownLatch latch = new CountDownLatch(10);
 
@@ -888,6 +891,7 @@ public class TimerTest {
                             throw new RuntimeException(e);
                         }
                     }
+                    executionTimes.add(System.currentTimeMillis());
                     latch.countDown();
                 }
             }
@@ -896,7 +900,8 @@ public class TimerTest {
             SlowThenFastTask slowThenFastTask = new SlowThenFastTask();
 
             t.scheduleAtFixedRate(slowThenFastTask, 100, 100);
-            assertTrue("Fixed rate tasks didn't run 10 times within 10 periods",
+            assertTrue("Fixed rate tasks didn't run 10 times within 10 periods;"
+                + " times: " + executionTimes,
                 latch.await(1_100, TimeUnit.MILLISECONDS));
             t.cancel();
         } finally {
@@ -911,6 +916,7 @@ public class TimerTest {
     @Test
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_enabled() throws Exception {
         Timer t = null;
+        final List<Long> executionTimes = new ArrayList<>();
         try {
             final CountDownLatch latch = new CountDownLatch(6);
 
@@ -927,6 +933,7 @@ public class TimerTest {
                             throw new RuntimeException(e);
                         }
                     }
+                    executionTimes.add(System.currentTimeMillis());
                     latch.countDown();
                 }
             }
@@ -939,7 +946,8 @@ public class TimerTest {
             latch.await(1_000, TimeUnit.MILLISECONDS);
             long finishedAt = System.currentTimeMillis();
             assertTrue("Fixed rate schedule ran too fast, took only: "
-                    + (finishedAt - startedAt) + " ms",
+                    + (finishedAt - startedAt) + " ms;"
+                    + " times: " + executionTimes,
                     finishedAt - startedAt > 700);
             t.cancel();
         } finally {
