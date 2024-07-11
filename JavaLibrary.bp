@@ -479,6 +479,7 @@ java_library {
     // This jar is packaged as part of the SDK, use -target 8 so that it works
     // with old JDKs.
     java_version: "1.8",
+    is_stubs_module: true,
 }
 
 // An alternative to core-lambda-stubs that omits openjdk_lambda_duplicate_stub_files
