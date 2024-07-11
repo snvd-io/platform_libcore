@@ -568,6 +568,7 @@ java_library_static {
     name: "core-compat-test-rules",
     visibility: [
         "//art/build/sdk",
+        "//libcore:__subpackages__",
         "//frameworks/base/tests/PlatformCompatGating/test-rules",
         "//libcore:__subpackages__",
     ],
