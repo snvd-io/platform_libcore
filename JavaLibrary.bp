@@ -1104,8 +1104,6 @@ java_aconfig_library {
     apex_available: [
         "com.android.art",
         "com.android.art.debug",
-        // Remove :platform until we allow platform codes to use libcore's @FlaggedApi APIs
-        // "//apex_available:platform",
     ],
     visibility: [
         "//visibility:private",
