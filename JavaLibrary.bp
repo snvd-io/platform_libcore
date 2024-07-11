@@ -220,7 +220,10 @@ java_library {
         // directly.
         ":okhttp_impl_files",
     ],
-    static_libs: ["libcore-aconfig-flags-lib-for-core-all-only"],
+    static_libs: [
+        "art-aconfig-flags-java-lib-for-core-all-only",
+        "libcore-aconfig-flags-lib-for-core-all-only",
+    ],
 
     sdk_version: "none",
     system_modules: "none",
@@ -265,6 +268,7 @@ java_system_modules {
     // Visibility is deliberately restricted to a small set of build modules that
     // the core library team control.
     visibility: [
+        "//art/build/flags",
         "//art/test:__subpackages__",
         "//build/make/tools/aconfig/fake_device_config",
         "//external/apache-harmony:__subpackages__",
@@ -298,8 +302,6 @@ java_library {
     hostdex: true,
 
     srcs: [":core_oj_java_files"],
-    // Do NOT statically link libcore-aconfig-flags-lib, because it's already in core-libart.
-    libs: ["libcore-aconfig-flags-lib"],
     java_resources: core_resources,
 
     sdk_version: "none",
@@ -362,7 +364,10 @@ java_library {
     hostdex: true,
 
     srcs: [":core_libart_java_files"],
-    static_libs: ["libcore-aconfig-flags-lib"],
+    static_libs: [
+        "art-aconfig-flags-java-lib",
+        "libcore-aconfig-flags-lib",
+    ],
 
     sdk_version: "none",
     system_modules: "core-all-system-modules",
@@ -1005,12 +1010,13 @@ java_system_modules {
 java_library {
     name: "framework-api-annotations-lib",
     srcs: [":framework-api-annotations"],
+    static_libs: ["aconfig-annotations-lib-sdk-none"],
     sdk_version: "none",
     patch_module: "java.base",
     system_modules: "core-all-system-modules",
     installable: false,
     visibility: [
-        "//visibility:private",
+        "//art/build/flags",
     ],
 }
 
@@ -1078,11 +1084,22 @@ java_aconfig_library {
 }
 
 java_aconfig_library {
+    name: "art-aconfig-flags-java-lib-for-core-all-only",
+    aconfig_declarations: "art-aconfig-flags",
+    system_modules: "libcore-bootstrap-lib-for-flags-lib-system-modules",
+    sdk_version: "none",
+    patch_module: "java.base",
+    installable: false,
+    visibility: ["//visibility:private"],
+}
+
+java_aconfig_library {
     name: "libcore-aconfig-flags-lib",
     aconfig_declarations: "libcore-aconfig-flags",
     sdk_version: "none",
     patch_module: "java.base",
     system_modules: "core-all-system-modules",
+    libs: ["framework-api-annotations-lib"],
     min_sdk_version: "31", // ART module is enabled on Android 12 or above.
     apex_available: [
         "com.android.art",
@@ -1131,6 +1148,7 @@ java_sdk_library {
         // java.text.CollectionElementIterator.NULLORDER to be initialized from
         // android.icu.text.CollationElementIterator.NULLORDER.
         "i18n.module.intra.core.api.stubs",
+        "art-aconfig-flags-java-lib",
         "libcore-aconfig-flags-lib",
     ],
     stub_only_static_libs: ["notices-for-stubs-jar"],

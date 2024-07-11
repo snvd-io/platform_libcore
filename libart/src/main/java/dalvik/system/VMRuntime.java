@@ -1071,4 +1071,11 @@ public final class VMRuntime {
     public static boolean isVTrunkStableFlagEnabled() {
         return Flags.vApis();
     }
+
+    /**
+     * @hide for internal testing.
+     */
+    public static boolean isM202409RampEnabled() {
+        return com.android.art.flags.Flags.m202409Ramp();
+    }
 }
