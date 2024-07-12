@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -227,7 +228,8 @@ public class ScheduledExecutorTest extends JSR166TestCase {
     public void testFixedRateSequenceSkipMultipleMissedFixedRateTasksEnabled()
             throws InterruptedException {
         final ScheduledThreadPoolExecutor p = new ScheduledThreadPoolExecutor(1);
-        final List<Long> executionTimes = new ArrayList<>();
+        final ConcurrentLinkedQueue<Long> executionTimes =
+                new ConcurrentLinkedQueue<>();
         try (PoolCleaner cleaner = cleaner(p)) {
             for (int delay = 1; delay <= 1_000; delay *= 3) {
                 final long startTime = System.nanoTime();
@@ -276,7 +278,8 @@ public class ScheduledExecutorTest extends JSR166TestCase {
     public void testFixedRateSequenceSkipMultipleMissedFixedRateTasksDisabled()
             throws InterruptedException {
         final ScheduledThreadPoolExecutor p = new ScheduledThreadPoolExecutor(1);
-        final List<Long> executionTimes = new ArrayList<>();
+        final ConcurrentLinkedQueue<Long> executionTimes =
+                new ConcurrentLinkedQueue<>();
         try (PoolCleaner cleaner = cleaner(p)) {
             for (int delay = 1; delay <= 1_000; delay *= 3) {
                 final long startTime = System.nanoTime();
