@@ -23,11 +23,10 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -874,7 +873,8 @@ public class TimerTest {
     @Test
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_disabled() throws Exception {
         Timer t = null;
-        final List<Long> executionTimes = new ArrayList<>();
+        final ConcurrentLinkedQueue<Long> executionTimes =
+                new ConcurrentLinkedQueue<>();
         try {
             final CountDownLatch latch = new CountDownLatch(10);
 
@@ -916,7 +916,8 @@ public class TimerTest {
     @Test
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_enabled() throws Exception {
         Timer t = null;
-        final List<Long> executionTimes = new ArrayList<>();
+        final ConcurrentLinkedQueue<Long> executionTimes =
+                new ConcurrentLinkedQueue<>();
         try {
             final CountDownLatch latch = new CountDownLatch(6);
 
