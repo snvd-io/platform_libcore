@@ -227,6 +227,7 @@ public class ScheduledExecutorTest extends JSR166TestCase {
     public void testFixedRateSequenceSkipMultipleMissedFixedRateTasksEnabled()
             throws InterruptedException {
         final ScheduledThreadPoolExecutor p = new ScheduledThreadPoolExecutor(1);
+        final List<Long> executionTimes = new ArrayList<>();
         try (PoolCleaner cleaner = cleaner(p)) {
             for (int delay = 1; delay <= 1_000; delay *= 3) {
                 final long startTime = System.nanoTime();
@@ -243,6 +244,7 @@ public class ScheduledExecutorTest extends JSR166TestCase {
                             isFirstRun = false;
                             Thread.sleep(thisDelay * ((long) slept));
                         }
+                        executionTimes.add(System.nanoTime());
                         done.countDown();
                     }
                 };
@@ -258,7 +260,7 @@ public class ScheduledExecutorTest extends JSR166TestCase {
                 }
                 // else retry with longer delay
             }
-            fail("unexpected execution rate");
+            fail("unexpected execution rate; times: " + executionTimes);
         }
     }
 
@@ -274,6 +276,7 @@ public class ScheduledExecutorTest extends JSR166TestCase {
     public void testFixedRateSequenceSkipMultipleMissedFixedRateTasksDisabled()
             throws InterruptedException {
         final ScheduledThreadPoolExecutor p = new ScheduledThreadPoolExecutor(1);
+        final List<Long> executionTimes = new ArrayList<>();
         try (PoolCleaner cleaner = cleaner(p)) {
             for (int delay = 1; delay <= 1_000; delay *= 3) {
                 final long startTime = System.nanoTime();
@@ -290,6 +293,7 @@ public class ScheduledExecutorTest extends JSR166TestCase {
                             isFirstRun = false;
                             Thread.sleep(thisDelay * ((long) slept));
                         }
+                        executionTimes.add(System.nanoTime());
                         done.countDown();
                     }
                 };
@@ -306,7 +310,7 @@ public class ScheduledExecutorTest extends JSR166TestCase {
                 }
                 // else retry with longer delay
             }
-            fail("unexpected execution rate");
+            fail("unexpected execution rate; times: " + executionTimes);
         }
     }
 
