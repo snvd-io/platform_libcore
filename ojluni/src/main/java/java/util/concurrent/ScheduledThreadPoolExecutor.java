@@ -158,6 +158,12 @@ public class ScheduledThreadPoolExecutor
     @EnabledAfter(targetSdkVersion = VersionCodes.VANILLA_ICE_CREAM)
     public static final long STPE_SKIP_MULTIPLE_MISSED_PERIODIC_TASKS = 288912692L;
 
+    /** @hide */
+    public static boolean skipMultipleMissedPeriodicTasks() {
+        return Compatibility.isChangeEnabled(
+            STPE_SKIP_MULTIPLE_MISSED_PERIODIC_TASKS);
+    }
+
     /*
      * This class specializes ThreadPoolExecutor implementation by
      *
@@ -307,8 +313,7 @@ public class ScheduledThreadPoolExecutor
             if (p > 0) {
                 // Schedule for one period past the last start
                 time += p;
-                if (Compatibility.isChangeEnabled(
-                        STPE_SKIP_MULTIPLE_MISSED_PERIODIC_TASKS)) {
+                if (skipMultipleMissedPeriodicTasks()) {
                     final long now = System.nanoTime();
                     // If next schedule is in the past
                     if (time < now - period) {

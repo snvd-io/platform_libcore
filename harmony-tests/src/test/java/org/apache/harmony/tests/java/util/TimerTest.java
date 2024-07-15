@@ -872,7 +872,8 @@ public class TimerTest {
     // Android-changed: b/351566728 added this test case to test new behavior.
     @DisableCompatChanges({Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     @Test
-    public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_disabled() throws Exception {
+    public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_oldBehavior() throws Exception {
+        assertFalse(Timer.skipMultipleMissedPeriodicTasks());
         Timer t = null;
         final List<Long> executionTimes = new ArrayList<>();
         try {
@@ -914,7 +915,8 @@ public class TimerTest {
     // Android-changed: b/351566728 added this test case to test new behavior.
     @EnableCompatChanges({Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     @Test
-    public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_enabled() throws Exception {
+    public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_newBehavior() throws Exception {
+        assertTrue(Timer.skipMultipleMissedPeriodicTasks());
         Timer t = null;
         final List<Long> executionTimes = new ArrayList<>();
         try {
