@@ -111,6 +111,12 @@ public class Timer {
     @EnabledAfter(targetSdkVersion = VersionCodes.VANILLA_ICE_CREAM)
     public static final long SKIP_MULTIPLE_MISSED_PERIODIC_TASKS = 351566728L;
 
+    /** @hide */
+    public static boolean skipMultipleMissedPeriodicTasks() {
+        return Compatibility.isChangeEnabled(
+            SKIP_MULTIPLE_MISSED_PERIODIC_TASKS);
+    }
+
     /**
      * The timer task queue.  This data structure is shared with the timer
      * thread.  The timer produces tasks, via its various schedule calls,
@@ -596,8 +602,7 @@ class TimerThread extends Thread {
                                 queue.rescheduleMin(now - p);
                             } else { // Fixed rate
                                 long newTime = execTime + p;
-                                if (Compatibility.isChangeEnabled(
-                                        Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS)
+                                if (Timer.skipMultipleMissedPeriodicTasks()
                                         && (newTime < now - p)) {
                                     newTime = now - ((now - execTime + p) % p);
                                 }
