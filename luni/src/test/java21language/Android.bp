@@ -1,4 +1,4 @@
-// Copyright (C) 2021 The Android Open Source Project
+// Copyright (C) 2024 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Android tests related to Java 17 language features.
+// Android tests related to Java 21 language features.
 
-// Use jarjar to repackage Java17LanguageFeatures, to be used in tests below.
+// Use jarjar to repackage Java21LanguageFeatures, to be used in tests below.
 package {
     default_team: "trendy_team_java_core_libraries",
     // http://go/android-license-faq
@@ -25,12 +25,12 @@ package {
 }
 
 java_library {
-    name: "core-java-17-language-features-repackaged-for-test",
+    name: "core-java-21-language-features-repackaged-for-test",
     hostdex: true,
 
-    srcs: [":core-java-17-language-features-source"],
-    jarjar_rules: "jarjar_rules_java17_language_features.txt",
-    java_version: "17",
+    srcs: [":core-java-21-language-features-source"],
+    jarjar_rules: "jarjar_rules_java21_language_features.txt",
+    java_version: "21",
 
     sdk_version: "none",
     system_modules: "core-all-system-modules",
@@ -39,46 +39,46 @@ java_library {
     visibility: ["//visibility:private"],
 }
 
-// Generate a clone of Java17LanguageFeaturesTest which uses a version of
-// Java17LanguageFeatures repackaged by jarjar. This ensures that jarjar is able
-// to handle a class file which must be at least v61 and includes bytecode
-// compiled from Java 17 language features.
+// Generate a clone of Java21LanguageFeaturesTest which uses a version of
+// Java21LanguageFeatures repackaged by jarjar. This ensures that jarjar is able
+// to handle a class file which must be at least v65 and includes bytecode
+// compiled from Java 21 language features.
 filegroup {
-    name: "core-rewrite-java-17-test-for-jarjar-sed-script",
+    name: "core-rewrite-java-21-test-for-jarjar-sed-script",
     srcs: ["rewrite-test-for-jarjar.sed"],
     visibility: ["//visibility:private"],
 }
 
 filegroup {
-    name: "core-java-17-language-features-test-src",
-    srcs: ["java/libcore/libcore/internal/Java17LanguageFeaturesTest.java"],
+    name: "core-java-21-language-features-test-src",
+    srcs: ["java/libcore/libcore/internal/Java21LanguageFeaturesTest.java"],
     visibility: ["//visibility:private"],
 }
 
 genrule {
-    name: "core-gen-test-repackaged-java-17-language-features",
+    name: "core-gen-test-repackaged-java-21-language-features",
     srcs: [
-        ":core-rewrite-java-17-test-for-jarjar-sed-script",
-        ":core-java-17-language-features-test-src",
+        ":core-rewrite-java-21-test-for-jarjar-sed-script",
+        ":core-java-21-language-features-test-src",
     ],
-    out: ["libcore/libcore/internal/Java17LanguageFeaturesJarjarTest.java"],
-    cmd: "sed -r -f $(location :core-rewrite-java-17-test-for-jarjar-sed-script) $(location :core-java-17-language-features-test-src) > $(out)",
+    out: ["libcore/libcore/internal/Java21LanguageFeaturesJarjarTest.java"],
+    cmd: "sed -r -f $(location :core-rewrite-java-21-test-for-jarjar-sed-script) $(location :core-java-21-language-features-test-src) > $(out)",
     visibility: ["//visibility:private"],
 }
 
 java_library {
-    name: "core-java-17-language-tests",
+    name: "core-java-21-language-tests",
     hostdex: true,
     srcs: [
         "java/**/*.java",
-        ":core-gen-test-repackaged-java-17-language-features",
+        ":core-gen-test-repackaged-java-21-language-features",
     ],
     sdk_version: "none",
     system_modules: "core-all-system-modules",
     static_libs: [
-        "core-java-17-language-features-repackaged-for-test",
+        "core-java-21-language-features-repackaged-for-test",
         "junit",
     ],
     visibility: ["//libcore"],
-    java_version: "17",
+    java_version: "21",
 }
