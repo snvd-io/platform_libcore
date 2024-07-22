@@ -243,6 +243,8 @@ java_library {
     libs: [
         "conscrypt.module.intra.core.api",
     ],
+
+    java_version: "21",
 }
 
 platform_compat_config {
@@ -405,6 +407,8 @@ java_library {
             "-Xep:NullableOnContainingClass:WARN",
         ],
     },
+
+    java_version: "21",
 }
 
 // Java library for use on host, e.g. by robolectric or layoutlib.
@@ -706,6 +710,14 @@ filegroup {
     visibility: ["//libcore/luni/src/test/java17language"],
 }
 
+// A filegroup that provides access to a source file for a toolchain test that
+// checks Java 21 language features are handled properly by JarJar.
+filegroup {
+    name: "core-java-21-language-features-source",
+    srcs: ["luni/src/main/java/libcore/internal/Java21LanguageFeatures.java"],
+    visibility: ["//libcore/luni/src/test/java21language"],
+}
+
 genrule {
     name: "core-tests-smali-dex",
     srcs: ["luni/src/test/java/**/*.smali"],
@@ -794,6 +806,7 @@ java_test {
         "core-java-9-language-tests",
         "core-java-11-language-tests",
         "core-java-17-language-tests",
+        "core-java-21-language-tests",
         "core-test-rules",
         "core-tests-support",
         "junit-params",
