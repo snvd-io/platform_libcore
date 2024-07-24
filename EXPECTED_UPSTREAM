@@ -939,7 +939,7 @@ ojluni/src/main/java/java/util/HashMap.java,jdk21u/jdk-21.0.1-ga,src/java.base/s
 ojluni/src/main/java/java/util/HashSet.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/HashSet.java
 ojluni/src/main/java/java/util/Hashtable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Hashtable.java
 ojluni/src/main/java/java/util/HexFormat.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/HexFormat.java
-ojluni/src/main/java/java/util/IdentityHashMap.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IdentityHashMap.java
+ojluni/src/main/java/java/util/IdentityHashMap.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/IdentityHashMap.java
 ojluni/src/main/java/java/util/IllegalFormatArgumentIndexException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IllegalFormatArgumentIndexException.java
 ojluni/src/main/java/java/util/IllegalFormatCodePointException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IllegalFormatCodePointException.java
 ojluni/src/main/java/java/util/IllegalFormatConversionException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IllegalFormatConversionException.java
@@ -2443,6 +2443,7 @@ ojluni/src/test/java/util/HashMap/TreeBinAssert.java,jdk17u/jdk-17.0.6-ga,test/j
 ojluni/src/test/java/util/HashMap/WhiteBoxResizeTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/HashMap/WhiteBoxResizeTest.java
 ojluni/src/test/java/util/HashSet/Serialization.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/HashSet/Serialization.java
 ojluni/src/test/java/util/HexFormat/HexFormatTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/HexFormat/HexFormatTest.java
+ojluni/src/test/java/util/IdentityHashMap/Basic.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/IdentityHashMap/Basic.java
 ojluni/src/test/java/util/IdentityHashMap/Capacity.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/IdentityHashMap/Capacity.java
 ojluni/src/test/java/util/IdentityHashMap/DistinctEntrySetElements.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/IdentityHashMap/DistinctEntrySetElements.java
 ojluni/src/test/java/util/IdentityHashMap/EntrySetIteratorRemoveInvalidatesEntry.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/IdentityHashMap/EntrySetIteratorRemoveInvalidatesEntry.java
