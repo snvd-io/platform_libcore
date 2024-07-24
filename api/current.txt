@@ -15298,6 +15298,7 @@ package java.util {
     ctor public WeakHashMap(@NonNull java.util.Map<? extends K,? extends V>);
     method @NonNull public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public void forEach(@NonNull java.util.function.BiConsumer<? super K,? super V>);
+    method @FlaggedApi("com.android.libcore.openjdk_21_v1_apis") @NonNull public static <K, V> java.util.WeakHashMap<K,V> newWeakHashMap(int);
     method public void replaceAll(@NonNull java.util.function.BiFunction<? super K,? super V,? extends V>);
   }
 

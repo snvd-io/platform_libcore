@@ -1019,7 +1019,7 @@ ojluni/src/main/java/java/util/UUID.java,jdk17u/jdk-17.0.6-ga,src/java.base/shar
 ojluni/src/main/java/java/util/UnknownFormatConversionException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/UnknownFormatConversionException.java
 ojluni/src/main/java/java/util/UnknownFormatFlagsException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/UnknownFormatFlagsException.java
 ojluni/src/main/java/java/util/Vector.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/Vector.java
-ojluni/src/main/java/java/util/WeakHashMap.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/WeakHashMap.java
+ojluni/src/main/java/java/util/WeakHashMap.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/WeakHashMap.java
 ojluni/src/main/java/java/util/XMLUtils.java,jdk7u/jdk7u40-b60,jdk/src/share/classes/java/util/XMLUtils.java
 ojluni/src/main/java/java/util/concurrent/AbstractExecutorService.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/AbstractExecutorService.java
 ojluni/src/main/java/java/util/concurrent/ArrayBlockingQueue.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/ArrayBlockingQueue.java
@@ -2558,9 +2558,9 @@ ojluni/src/test/java/util/Vector/LastIndexOf.java,jdk17u/jdk-17.0.6-ga,test/jdk/
 ojluni/src/test/java/util/Vector/SerializationDeadlock.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Vector/SerializationDeadlock.java
 ojluni/src/test/java/util/Vector/SimpleSerialization.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Vector/SimpleSerialization.java
 ojluni/src/test/java/util/Vector/SyncLastIndexOf.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Vector/SyncLastIndexOf.java
-ojluni/src/test/java/util/WeakHashMap/GCDuringIteration.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/WeakHashMap/GCDuringIteration.java
-ojluni/src/test/java/util/WeakHashMap/Iteration.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/WeakHashMap/Iteration.java
-ojluni/src/test/java/util/WeakHashMap/ZeroInitCap.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/WeakHashMap/ZeroInitCap.java
+ojluni/src/test/java/util/WeakHashMap/GCDuringIteration.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/WeakHashMap/GCDuringIteration.java
+ojluni/src/test/java/util/WeakHashMap/Iteration.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/WeakHashMap/Iteration.java
+ojluni/src/test/java/util/WeakHashMap/ZeroInitCap.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/WeakHashMap/ZeroInitCap.java
 ojluni/src/test/java/util/concurrent/tck/CompletableFutureTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/concurrent/tck/CompletableFutureTest.java
 ojluni/src/test/java/util/concurrent/tck/SplittableRandomTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/concurrent/tck/SplittableRandomTest.java
 ojluni/src/test/java/util/regex/BMPTestCases.txt,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/regex/BMPTestCases.txt
