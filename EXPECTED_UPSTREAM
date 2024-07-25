@@ -975,10 +975,10 @@ ojluni/src/main/java/java/util/NoSuchElementException.java,jdk17u/jdk-17.0.6-ga,
 ojluni/src/main/java/java/util/Objects.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Objects.java
 ojluni/src/main/java/java/util/Observable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Observable.java
 ojluni/src/main/java/java/util/Observer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Observer.java
-ojluni/src/main/java/java/util/Optional.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Optional.java
-ojluni/src/main/java/java/util/OptionalDouble.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/OptionalDouble.java
-ojluni/src/main/java/java/util/OptionalInt.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/OptionalInt.java
-ojluni/src/main/java/java/util/OptionalLong.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/OptionalLong.java
+ojluni/src/main/java/java/util/Optional.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Optional.java
+ojluni/src/main/java/java/util/OptionalDouble.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/OptionalDouble.java
+ojluni/src/main/java/java/util/OptionalInt.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/OptionalInt.java
+ojluni/src/main/java/java/util/OptionalLong.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/OptionalLong.java
 ojluni/src/main/java/java/util/PrimitiveIterator.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/PrimitiveIterator.java
 ojluni/src/main/java/java/util/PriorityQueue.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/PriorityQueue.java
 ojluni/src/main/java/java/util/Properties.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Properties.java
