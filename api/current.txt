@@ -14053,6 +14053,8 @@ package java.util {
     method public Object clone();
     method public java.util.Set<java.util.Map.Entry<K,V>> entrySet();
     method public void forEach(java.util.function.BiConsumer<? super K,? super V>);
+    method @FlaggedApi("com.android.libcore.openjdk_21_v1_apis") public boolean remove(Object, Object);
+    method @FlaggedApi("com.android.libcore.openjdk_21_v1_apis") public boolean replace(K, V, V);
     method public void replaceAll(java.util.function.BiFunction<? super K,? super V,? extends V>);
   }
 
