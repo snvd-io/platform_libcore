@@ -937,7 +937,7 @@ ojluni/src/main/java/java/util/HashMap.java,jdk21u/jdk-21.0.1-ga,src/java.base/s
 ojluni/src/main/java/java/util/HashSet.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/HashSet.java
 ojluni/src/main/java/java/util/Hashtable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Hashtable.java
 ojluni/src/main/java/java/util/HexFormat.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/HexFormat.java
-ojluni/src/main/java/java/util/IdentityHashMap.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IdentityHashMap.java
+ojluni/src/main/java/java/util/IdentityHashMap.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/IdentityHashMap.java
 ojluni/src/main/java/java/util/IllegalFormatArgumentIndexException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IllegalFormatArgumentIndexException.java
 ojluni/src/main/java/java/util/IllegalFormatCodePointException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IllegalFormatCodePointException.java
 ojluni/src/main/java/java/util/IllegalFormatConversionException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/IllegalFormatConversionException.java
@@ -973,10 +973,10 @@ ojluni/src/main/java/java/util/NoSuchElementException.java,jdk17u/jdk-17.0.6-ga,
 ojluni/src/main/java/java/util/Objects.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Objects.java
 ojluni/src/main/java/java/util/Observable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Observable.java
 ojluni/src/main/java/java/util/Observer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Observer.java
-ojluni/src/main/java/java/util/Optional.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Optional.java
-ojluni/src/main/java/java/util/OptionalDouble.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/OptionalDouble.java
-ojluni/src/main/java/java/util/OptionalInt.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/OptionalInt.java
-ojluni/src/main/java/java/util/OptionalLong.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/OptionalLong.java
+ojluni/src/main/java/java/util/Optional.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Optional.java
+ojluni/src/main/java/java/util/OptionalDouble.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/OptionalDouble.java
+ojluni/src/main/java/java/util/OptionalInt.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/OptionalInt.java
+ojluni/src/main/java/java/util/OptionalLong.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/OptionalLong.java
 ojluni/src/main/java/java/util/PrimitiveIterator.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/PrimitiveIterator.java
 ojluni/src/main/java/java/util/PriorityQueue.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/PriorityQueue.java
 ojluni/src/main/java/java/util/Properties.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Properties.java
@@ -1019,7 +1019,7 @@ ojluni/src/main/java/java/util/UUID.java,jdk17u/jdk-17.0.6-ga,src/java.base/shar
 ojluni/src/main/java/java/util/UnknownFormatConversionException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/UnknownFormatConversionException.java
 ojluni/src/main/java/java/util/UnknownFormatFlagsException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/UnknownFormatFlagsException.java
 ojluni/src/main/java/java/util/Vector.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/Vector.java
-ojluni/src/main/java/java/util/WeakHashMap.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/WeakHashMap.java
+ojluni/src/main/java/java/util/WeakHashMap.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/WeakHashMap.java
 ojluni/src/main/java/java/util/XMLUtils.java,jdk7u/jdk7u40-b60,jdk/src/share/classes/java/util/XMLUtils.java
 ojluni/src/main/java/java/util/concurrent/AbstractExecutorService.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/AbstractExecutorService.java
 ojluni/src/main/java/java/util/concurrent/ArrayBlockingQueue.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/ArrayBlockingQueue.java
@@ -2441,6 +2441,7 @@ ojluni/src/test/java/util/HashMap/TreeBinAssert.java,jdk17u/jdk-17.0.6-ga,test/j
 ojluni/src/test/java/util/HashMap/WhiteBoxResizeTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/HashMap/WhiteBoxResizeTest.java
 ojluni/src/test/java/util/HashSet/Serialization.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/HashSet/Serialization.java
 ojluni/src/test/java/util/HexFormat/HexFormatTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/HexFormat/HexFormatTest.java
+ojluni/src/test/java/util/IdentityHashMap/Basic.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/IdentityHashMap/Basic.java
 ojluni/src/test/java/util/IdentityHashMap/Capacity.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/IdentityHashMap/Capacity.java
 ojluni/src/test/java/util/IdentityHashMap/DistinctEntrySetElements.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/IdentityHashMap/DistinctEntrySetElements.java
 ojluni/src/test/java/util/IdentityHashMap/EntrySetIteratorRemoveInvalidatesEntry.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/IdentityHashMap/EntrySetIteratorRemoveInvalidatesEntry.java
@@ -2558,9 +2559,9 @@ ojluni/src/test/java/util/Vector/LastIndexOf.java,jdk17u/jdk-17.0.6-ga,test/jdk/
 ojluni/src/test/java/util/Vector/SerializationDeadlock.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Vector/SerializationDeadlock.java
 ojluni/src/test/java/util/Vector/SimpleSerialization.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Vector/SimpleSerialization.java
 ojluni/src/test/java/util/Vector/SyncLastIndexOf.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/Vector/SyncLastIndexOf.java
-ojluni/src/test/java/util/WeakHashMap/GCDuringIteration.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/WeakHashMap/GCDuringIteration.java
-ojluni/src/test/java/util/WeakHashMap/Iteration.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/WeakHashMap/Iteration.java
-ojluni/src/test/java/util/WeakHashMap/ZeroInitCap.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/WeakHashMap/ZeroInitCap.java
+ojluni/src/test/java/util/WeakHashMap/GCDuringIteration.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/WeakHashMap/GCDuringIteration.java
+ojluni/src/test/java/util/WeakHashMap/Iteration.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/WeakHashMap/Iteration.java
+ojluni/src/test/java/util/WeakHashMap/ZeroInitCap.java,jdk21u/jdk-21.0.2-ga,test/jdk/java/util/WeakHashMap/ZeroInitCap.java
 ojluni/src/test/java/util/concurrent/tck/CompletableFutureTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/concurrent/tck/CompletableFutureTest.java
 ojluni/src/test/java/util/concurrent/tck/SplittableRandomTest.java,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/concurrent/tck/SplittableRandomTest.java
 ojluni/src/test/java/util/regex/BMPTestCases.txt,jdk17u/jdk-17.0.6-ga,test/jdk/java/util/regex/BMPTestCases.txt
