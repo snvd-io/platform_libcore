@@ -272,6 +272,8 @@ java_system_modules {
     visibility: [
         "//art/build/flags",
         "//art/test:__subpackages__",
+        "//build/make/tools/aconfig/aconfig_storage_file",
+        "//build/make/tools/aconfig/aconfig_storage_read_api",
         "//build/make/tools/aconfig/fake_device_config",
         "//external/apache-harmony:__subpackages__",
         "//external/apache-xml",
