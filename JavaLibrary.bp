@@ -272,6 +272,8 @@ java_system_modules {
     visibility: [
         "//art/build/flags",
         "//art/test:__subpackages__",
+        "//build/make/tools/aconfig/aconfig_storage_file",
+        "//build/make/tools/aconfig/aconfig_storage_read_api",
         "//build/make/tools/aconfig/fake_device_config",
         "//external/apache-harmony:__subpackages__",
         "//external/apache-xml",
@@ -291,6 +293,7 @@ java_library {
     visibility: [
         "//art/build/apex",
         "//art/build/sdk",
+        "//art/tools/fuzzer",
         "//external/wycheproof",
         "//libcore/benchmarks",
         "//packages/modules/ArtPrebuilt",
@@ -353,6 +356,7 @@ java_library {
     visibility: [
         "//art/build/apex",
         "//art/build/sdk",
+        "//art/tools/fuzzer",
         "//external/wycheproof",
         "//libcore/benchmarks",
         "//packages/modules/ArtPrebuilt",
@@ -937,6 +941,12 @@ droiddoc_exported_dir {
     visibility: ["//visibility:private"],
 }
 
+droiddoc_exported_dir {
+    name: "toolchainapi-annotated-flagged-stubs",
+    path: "ojluni/annotations/flagged_toolchainapi",
+    visibility: ["//libcore/toolchainapi"],
+}
+
 // A file containing the list of tags that are "known" to us from the OpenJdk
 // source code and so should not cause an error or warning.
 filegroup {
@@ -1031,6 +1041,7 @@ java_library {
     installable: false,
     visibility: [
         "//art/build/flags",
+        "//libcore:__subpackages__",
     ],
 }
 
@@ -1041,6 +1052,7 @@ aconfig_declarations {
     exportable: true,
     srcs: ["libcore.aconfig"],
     visibility: [
+        "//libcore:__subpackages__",
         "//frameworks/base",
     ],
 }
@@ -1120,7 +1132,7 @@ java_aconfig_library {
         "com.android.art.debug",
     ],
     visibility: [
-        "//visibility:private",
+        "//libcore:__subpackages__",
     ],
 }
 
