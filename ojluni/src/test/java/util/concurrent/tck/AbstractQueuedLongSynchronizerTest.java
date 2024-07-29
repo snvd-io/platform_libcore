@@ -174,7 +174,7 @@ public class AbstractQueuedLongSynchronizerTest extends JSR166TestCase {
         long startTime = System.nanoTime();
         while (!sync.isQueued(t)) {
             if (millisElapsedSince(startTime) > LONG_DELAY_MS)
-                throw new AssertionFailedError("timed out");
+                fail("timed out");
             Thread.yield();
         }
         assertTrue(t.isAlive());

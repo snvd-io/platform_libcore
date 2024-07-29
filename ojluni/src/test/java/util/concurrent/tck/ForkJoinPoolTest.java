@@ -351,7 +351,7 @@ public class ForkJoinPoolTest extends JSR166TestCase {
                        p.getFactory());
             while (! p.isQuiescent()) {
                 if (millisElapsedSince(startTime) > LONG_DELAY_MS)
-                    throw new AssertionFailedError("timed out");
+                    fail("timed out");
                 assertFalse(p.getAsyncMode());
                 assertFalse(p.isShutdown());
                 assertFalse(p.isTerminating());

@@ -113,7 +113,7 @@ public class SemaphoreTest extends JSR166TestCase {
         long startTime = System.nanoTime();
         while (!s.hasQueuedThread(t)) {
             if (millisElapsedSince(startTime) > LONG_DELAY_MS)
-                throw new AssertionFailedError("timed out");
+                fail("timed out");
             Thread.yield();
         }
         assertTrue(s.hasQueuedThreads());
@@ -127,7 +127,7 @@ public class SemaphoreTest extends JSR166TestCase {
         long startTime = System.nanoTime();
         while (!s.hasQueuedThreads()) {
             if (millisElapsedSince(startTime) > LONG_DELAY_MS)
-                throw new AssertionFailedError("timed out");
+                fail("timed out");
             Thread.yield();
         }
     }
