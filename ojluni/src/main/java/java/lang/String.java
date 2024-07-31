@@ -2249,7 +2249,9 @@ public final class String
                 : StringUTF16.indexOf(src, srcCount, tgtStr, tgtCount, fromIndex);
         }
         if (srcCoder == LATIN1) {    //  && tgtCoder == UTF16
-            return -1;
+            // Android-changed: Latin1 AbstractStringBuilder has a larger range than Latin1 String.
+            // return -1;
+            return StringLatin1.indexOfUTF16(src, srcCount, tgtStr, tgtCount, fromIndex);
         }
         // srcCoder == UTF16 && tgtCoder == LATIN1) {
         // return StringUTF16.indexOfLatin1(src, srcCount, tgt, tgtCount, fromIndex);
@@ -2397,7 +2399,9 @@ public final class String
                 : StringUTF16.lastIndexOf(src, srcCount, tgtStr, tgtCount, fromIndex);
         }
         if (srcCoder == LATIN1) {    // && tgtCoder == UTF16
-            return -1;
+            // Android-changed: Latin1 AbstractStringBuilder has a larger range than Latin1 String.
+            // return -1;
+            return StringLatin1.lastIndexOfUTF16(src, srcCount, tgtStr, tgtCount, fromIndex);
         }
         // srcCoder == UTF16 && tgtCoder == LATIN1
         // return StringUTF16.lastIndexOfLatin1(src, srcCount, tgt, tgtCount, fromIndex);
