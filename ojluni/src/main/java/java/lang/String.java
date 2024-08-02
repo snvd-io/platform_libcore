@@ -4396,10 +4396,6 @@ public final class String
             checkBoundsOffCount(fromIndex, length() << 1, dst.length);
             fillBytesUTF16(dst, fromIndex);
         } else {
-            if (coder() != CODER_LATIN1) {
-                // Do not concat String in the error message.
-                throw new StringIndexOutOfBoundsException("Expect Latin-1 coder.");
-            }
             checkBoundsOffCount(dstBegin, length(), dst.length);
             fillBytesLatin1(dst, dstBegin);
         }
