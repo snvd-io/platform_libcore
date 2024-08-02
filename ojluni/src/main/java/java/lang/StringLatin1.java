@@ -36,8 +36,6 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import jdk.internal.HotSpotIntrinsicCandidate;
 
-import static java.lang.String.LATIN1;
-import static java.lang.String.UTF16;
 import static java.lang.String.checkOffset;
 
 final class StringLatin1 {
