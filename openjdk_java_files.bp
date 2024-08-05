@@ -1561,6 +1561,7 @@ filegroup {
         "ojluni/src/main/java/jdk/internal/reflect/CallerSensitive.java",
         "ojluni/src/main/java/jdk/internal/reflect/Reflection.java",
         "ojluni/src/main/java/jdk/internal/vm/annotation/Contended.java",
+        "ojluni/src/main/java/jdk/internal/vm/annotation/ForceInline.java",
         "ojluni/src/main/java/jdk/internal/vm/annotation/IntrinsicCandidate.java",
         "ojluni/src/main/java/jdk/internal/vm/annotation/ReservedStackAccess.java",
         "ojluni/src/main/java/jdk/internal/vm/annotation/Stable.java",
