@@ -1445,6 +1445,7 @@ ojluni/src/main/java/jdk/internal/util/jar/JarIndex.java,jdk17u/jdk-17.0.5-ga,sr
 ojluni/src/main/java/jdk/internal/util/random/RandomSupport.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/util/random/RandomSupport.java
 ojluni/src/main/java/jdk/internal/vm/StackChunk.java,jdk21u/jdk-21.0.3-ga,src/java.base/share/classes/jdk/internal/vm/StackChunk.java
 ojluni/src/main/java/jdk/internal/vm/annotation/Contended.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/Contended.java
+ojluni/src/main/java/jdk/internal/vm/annotation/ForceInline.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/jdk/internal/vm/annotation/ForceInline.java
 ojluni/src/main/java/jdk/internal/vm/annotation/IntrinsicCandidate.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/IntrinsicCandidate.java
 ojluni/src/main/java/jdk/internal/vm/annotation/ReservedStackAccess.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/ReservedStackAccess.java
 ojluni/src/main/java/jdk/internal/vm/annotation/Stable.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/vm/annotation/Stable.java
