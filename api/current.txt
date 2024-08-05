@@ -13176,7 +13176,7 @@ package java.util {
     method public void trimToSize();
   }
 
-  public class Arrays {
+  public final class Arrays {
     method @NonNull @java.lang.SafeVarargs public static <T> java.util.List<T> asList(@NonNull T...);
     method public static int binarySearch(@NonNull long[], long);
     method public static int binarySearch(@NonNull long[], int, int, long);
