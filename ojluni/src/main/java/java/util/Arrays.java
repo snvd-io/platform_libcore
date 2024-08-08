@@ -34,6 +34,7 @@ import dalvik.annotation.compat.VersionCodes;
 import dalvik.system.VMRuntime;
 
 import jdk.internal.util.ArraysSupport;
+import jdk.internal.vm.annotation.ForceInline;
 import jdk.internal.vm.annotation.IntrinsicCandidate;
 
 import java.io.Serializable;
@@ -3862,8 +3863,7 @@ public final class Arrays {
         return copy;
     }
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static void checkLength(int from, int to) {
         if (to < from) {
             throw new IllegalArgumentException(from + " > " + to);
@@ -3904,8 +3904,7 @@ public final class Arrays {
             return original.clone();
     }
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static byte[] copyOfRangeByte(byte[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -3949,8 +3948,7 @@ public final class Arrays {
             return original.clone();
     }
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static short[] copyOfRangeShort(short[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -3994,8 +3992,7 @@ public final class Arrays {
             return original.clone();
     }
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static int[] copyOfRangeInt(int[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -4039,8 +4036,7 @@ public final class Arrays {
             return original.clone();
     }
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static long[] copyOfRangeLong(long[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -4085,8 +4081,7 @@ public final class Arrays {
     }
 
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static char[] copyOfRangeChar(char[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -4131,8 +4126,7 @@ public final class Arrays {
     }
 
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static float[] copyOfRangeFloat(float[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -4177,8 +4171,7 @@ public final class Arrays {
     }
 
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static double[] copyOfRangeDouble(double[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
@@ -4223,8 +4216,7 @@ public final class Arrays {
     }
 
 
-    // Android-removed: and yet imported and not supported.
-    // @ForceInline
+    @ForceInline
     private static boolean[] copyOfRangeBoolean(boolean[] original, int from, int to) {
         checkLength(from, to);
         int newLength = to - from;
