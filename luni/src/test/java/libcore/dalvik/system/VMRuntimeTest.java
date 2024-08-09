@@ -19,7 +19,10 @@ package libcore.dalvik.system;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import android.platform.test.annotations.RequiresFlagsEnabled;
+
 import java.lang.reflect.Array;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import dalvik.system.VMRuntime;
 
@@ -156,6 +159,57 @@ public final class VMRuntimeTest {
         // The flag value depends on the release configurations. Don't assert the value until
         // the flag is turned on in all configurations.
         Assume.assumeTrue(b);
+    }
+
+    @Test
+    public void testGetFullGcCount() {
+        long gcCount = VMRuntime.getFullGcCount();
+        // full GC count needs to be larger or equal to 0
+        assertTrue("Full GC count needs to be non-negative", gcCount >= 0);
+    }
+
+    @Test
+    @RequiresFlagsEnabled(com.android.libcore.Flags.FLAG_POST_CLEANUP_APIS)
+    public void testPostCleanup() {
+        AtomicInteger cleanupCounter = new AtomicInteger(0);
+
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                cleanupCounter.addAndGet(1);
+            }
+        };
+        Runnable r2 = new Runnable() {
+            @Override
+            public void run() {
+                cleanupCounter.addAndGet(2);
+            }
+        };
+
+        // test callbacks are called when explicitly trigger onPostCleanup()
+        VMRuntime.addPostCleanupCallback(r1);
+        VMRuntime.addPostCleanupCallback(r2);
+        VMRuntime.onPostCleanup();
+        assertTrue(cleanupCounter.get() == 3);
+
+        // test callbacks are called when GC is triggered and finalization is done
+        System.gc();
+        System.runFinalization();
+        try {
+            int nsleep = 5;
+            while (cleanupCounter.get() < 6 && (nsleep-- > 0)) {
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            assertTrue("Sleep in test interrupted", false);
+        }
+
+        // NOTE: post cleanup could happen more than 1 time, hence the counter could be >= 6
+        int counter = cleanupCounter.get();
+        assertTrue("cleanupCounter should be >=6, got " + counter + " instead", counter >= 6);
+
+        VMRuntime.removePostCleanupCallback(r1);
+        VMRuntime.removePostCleanupCallback(r2);
     }
 }
 
