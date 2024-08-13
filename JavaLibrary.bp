@@ -1229,6 +1229,7 @@ java_sdk_library {
     dist_stem: "art",
     dist_group: "android",
     aconfig_declarations: [
+        "art-aconfig-flags",
         "libcore-aconfig-flags",
     ],
 }
