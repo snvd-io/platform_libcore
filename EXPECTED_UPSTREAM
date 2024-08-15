@@ -913,8 +913,8 @@ ojluni/src/main/java/java/util/ComparableTimSort.java,jdk21u/jdk-21.0.2-ga,src/j
 ojluni/src/main/java/java/util/Comparator.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Comparator.java
 ojluni/src/main/java/java/util/Comparators.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Comparators.java
 ojluni/src/main/java/java/util/ConcurrentModificationException.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/ConcurrentModificationException.java
-ojluni/src/main/java/java/util/Currency.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Currency.java
-ojluni/src/main/java/java/util/Date.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Date.java
+ojluni/src/main/java/java/util/Currency.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Currency.java
+ojluni/src/main/java/java/util/Date.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Date.java
 ojluni/src/main/java/java/util/Deque.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/Deque.java
 ojluni/src/main/java/java/util/Dictionary.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Dictionary.java
 ojluni/src/main/java/java/util/DoubleSummaryStatistics.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/DoubleSummaryStatistics.java
@@ -998,7 +998,7 @@ ojluni/src/main/java/java/util/SequencedSet.java,jdk21u/jdk-21.0.1-ga,src/java.b
 ojluni/src/main/java/java/util/ServiceConfigurationError.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/ServiceConfigurationError.java
 ojluni/src/main/java/java/util/ServiceLoader.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/ServiceLoader.java
 ojluni/src/main/java/java/util/Set.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Set.java
-ojluni/src/main/java/java/util/SimpleTimeZone.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/SimpleTimeZone.java
+ojluni/src/main/java/java/util/SimpleTimeZone.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/SimpleTimeZone.java
 ojluni/src/main/java/java/util/SortedMap.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/SortedMap.java
 ojluni/src/main/java/java/util/SortedSet.java,jdk21u/jdk-21.0.1-ga,src/java.base/share/classes/java/util/SortedSet.java
 ojluni/src/main/java/java/util/Spliterator.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/Spliterator.java
@@ -1008,7 +1008,7 @@ ojluni/src/main/java/java/util/Stack.java,jdk21u/jdk-21.0.2-ga,src/java.base/sha
 ojluni/src/main/java/java/util/StringJoiner.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/java/util/StringJoiner.java
 ojluni/src/main/java/java/util/StringTokenizer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/StringTokenizer.java
 ojluni/src/main/java/java/util/TimSort.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/TimSort.java
-ojluni/src/main/java/java/util/TimeZone.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/TimeZone.java
+ojluni/src/main/java/java/util/TimeZone.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/TimeZone.java
 ojluni/src/main/java/java/util/Timer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/Timer.java
 ojluni/src/main/java/java/util/TimerTask.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/TimerTask.java
 ojluni/src/main/java/java/util/TooManyListenersException.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/TooManyListenersException.java
