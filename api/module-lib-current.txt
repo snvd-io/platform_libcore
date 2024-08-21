@@ -766,10 +766,22 @@ package libcore.util {
   public class NativeAllocationRegistry {
     ctor public NativeAllocationRegistry(@NonNull ClassLoader, long, long);
     method public static void applyFreeFunction(long, long);
-    method public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long, long);
-    method public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long);
-    method public static libcore.util.NativeAllocationRegistry createNonmalloced(@NonNull ClassLoader, long, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull ClassLoader, long);
+    method @FlaggedApi("com.android.libcore.native_metrics") @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull Class, long, long);
+    method @FlaggedApi("com.android.libcore.native_metrics") @NonNull public static libcore.util.NativeAllocationRegistry createMalloced(@NonNull Class, long);
+    method @NonNull public static libcore.util.NativeAllocationRegistry createNonmalloced(@NonNull ClassLoader, long, long);
+    method @FlaggedApi("com.android.libcore.native_metrics") @NonNull public static libcore.util.NativeAllocationRegistry createNonmalloced(@NonNull Class, long, long);
+    method @FlaggedApi("com.android.libcore.native_metrics") @NonNull public static java.util.Collection<libcore.util.NativeAllocationRegistry.Metrics> getMetrics();
     method @NonNull public Runnable registerNativeAllocation(@NonNull Object, long);
+  }
+
+  @FlaggedApi("com.android.libcore.native_metrics") public static final class NativeAllocationRegistry.Metrics {
+    method @NonNull public String getClassName();
+    method public long getMallocedBytes();
+    method public long getMallocedCount();
+    method public long getNonmallocedBytes();
+    method public long getNonmallocedCount();
   }
 
   public class SneakyThrow {
