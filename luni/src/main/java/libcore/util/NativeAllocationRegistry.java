@@ -24,6 +24,8 @@ import android.annotation.FlaggedApi;
 import dalvik.system.VMRuntime;
 import sun.misc.Cleaner;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.lang.ref.Reference;
 import java.util.Collection;
 import java.util.HashMap;
@@ -335,16 +337,22 @@ public class NativeAllocationRegistry {
     }
 
     private static final boolean KEEP_METRICS = true;
-    private long count = 0;
-    private long bytes = 0;
+    private volatile int counter = 0;
+
+    private static final VarHandle COUNTER;
+    static {
+        try {
+            MethodHandles.Lookup l = MethodHandles.lookup();
+            COUNTER = l.findVarHandle(NativeAllocationRegistry.class,
+                "counter", int.class);
+        } catch (ReflectiveOperationException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
 
     private void updateMetrics(long size) {
         if (KEEP_METRICS) {
-            synchronized(this) {
-                size &= ~IS_MALLOCED;
-                count += size > 0 ? 1 : -1;
-                bytes += size;
-            }
+            COUNTER.getAndAdd(this, size > 0 ? 1 : -1);
         }
     }
 
@@ -373,14 +381,14 @@ public class NativeAllocationRegistry {
         }
 
         private void add(NativeAllocationRegistry r) {
-            synchronized(r) {
-                if (r.isMalloced()) {
-                    mallocedCount += r.count;
-                    mallocedBytes += r.bytes;
-                } else {
-                    nonmallocedCount += r.count;
-                    nonmallocedBytes += r.bytes;
-                }
+            long count = r.counter;
+            long bytes = count * (r.size & ~IS_MALLOCED);
+            if (r.isMalloced()) {
+                mallocedCount += count;
+                mallocedBytes += bytes;
+            } else {
+                nonmallocedCount += count;
+                nonmallocedBytes += bytes;
             }
         }
 
