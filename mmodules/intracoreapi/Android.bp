@@ -116,7 +116,7 @@ java_library {
         ":openjdk_lambda_stub_files",
     ],
     libs: [
-        "art.module.intra.core.api",
+        "art.module.intra.core.api.stubs",
     ],
     system_modules: "art-module-intra-core-api-stubs-bootstrap-system-modules",
     sdk_version: "none",
