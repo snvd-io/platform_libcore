@@ -1120,8 +1120,8 @@ public final class VMRuntime {
     /**
      * @hide for internal testing.
      */
-    public static boolean isM202409RampEnabled() {
-        return com.android.art.flags.Flags.m202409Ramp();
+    public static boolean isArtTestFlagEnabled() {
+        return com.android.art.flags.Flags.test();
     }
 
     /**
