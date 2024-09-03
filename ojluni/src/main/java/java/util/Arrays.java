@@ -2421,7 +2421,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (a[idx] != a2[idx]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2466,9 +2477,22 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex,
                                       aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (a[aFromIndex++] != b[bFromIndex++]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2493,7 +2517,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (a[idx] != a2[idx]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2538,9 +2573,22 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex,
                                       aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (a[aFromIndex++] != b[bFromIndex++]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2565,7 +2613,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (a[idx] != a2[idx]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2610,9 +2669,22 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex,
                                       aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (a[aFromIndex++] != b[bFromIndex++]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2638,7 +2710,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (a[idx] != a2[idx]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2683,9 +2766,22 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex,
                                       aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (a[aFromIndex++] != b[bFromIndex++]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2711,7 +2807,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (a[idx] != a2[idx]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2756,9 +2863,22 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex,
                                       aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (a[aFromIndex++] != b[bFromIndex++]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2783,7 +2903,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (a[idx] != a2[idx]) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2828,9 +2959,23 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex,
                                       aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (a[aFromIndex++] != b[bFromIndex++]) {
+                return false;
+            }
+        }
+
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2861,7 +3006,18 @@ public final class Arrays {
         if (a2.length != length)
             return false;
 
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (Double.doubleToLongBits(a[idx]) != Double.doubleToLongBits(a2[idx])) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2912,8 +3068,22 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex, aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (Double.doubleToLongBits(a[aFromIndex++]) !=
+                    Double.doubleToLongBits(b[bFromIndex++])) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2943,8 +3113,18 @@ public final class Arrays {
         int length = a.length;
         if (a2.length != length)
             return false;
-
-        return ArraysSupport.mismatch(a, a2, length) < 0;
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        // return ArraysSupport.mismatch(a, a2, length) < 0;
+        for (int idx = 0; idx < length; ++idx) {
+            if (Float.floatToIntBits(a[idx]) != Float.floatToIntBits(a2[idx])) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
@@ -2995,8 +3175,21 @@ public final class Arrays {
         if (aLength != bLength)
             return false;
 
+        // BEGIN Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
+        // TODO(b/362153334) Assess whether it's worth writing intrinsics or not.
+        /*
         return ArraysSupport.mismatch(a, aFromIndex,
                                       b, bFromIndex, aLength) < 0;
+        */
+        for (int idx = 0; idx < aLength; ++idx) {
+            if (Float.floatToIntBits(a[aFromIndex++]) != Float.floatToIntBits(b[bFromIndex++])) {
+                return false;
+            }
+        }
+        return true;
+        // END Android-changed: keep for-loop implementation due to the absence of ArraySupport
+        // intrinsics.
     }
 
     /**
