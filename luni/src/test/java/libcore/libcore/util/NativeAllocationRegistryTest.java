@@ -23,6 +23,8 @@ import junit.framework.TestCase;
 
 import libcore.util.NativeAllocationRegistry;
 
+import org.junit.Ignore;
+
 public class NativeAllocationRegistryTest extends TestCase {
 
     static {
@@ -188,22 +190,22 @@ public class NativeAllocationRegistryTest extends TestCase {
     }
 
     @RequiresFlagsEnabled(com.android.libcore.Flags.FLAG_NATIVE_METRICS)
-    public void testNativeAllocationNonmallocNoSharedRegistryWithMetrics() {
+    public void ignoreNativeAllocationNonmallocNoSharedRegistryWithMetrics() {
         testNativeAllocation(new TestConfig(false, false, true));
     }
 
     @RequiresFlagsEnabled(com.android.libcore.Flags.FLAG_NATIVE_METRICS)
-    public void testNativeAllocationNonmallocSharedRegistryWithMetrics() {
+    public void ignoreNativeAllocationNonmallocSharedRegistryWithMetrics() {
         testNativeAllocation(new TestConfig(false, true, true));
     }
 
     @RequiresFlagsEnabled(com.android.libcore.Flags.FLAG_NATIVE_METRICS)
-    public void testNativeAllocationMallocNoSharedRegistryWithMetrics() {
+    public void ignoreNativeAllocationMallocNoSharedRegistryWithMetrics() {
         testNativeAllocation(new TestConfig(true, false, true));
     }
 
     @RequiresFlagsEnabled(com.android.libcore.Flags.FLAG_NATIVE_METRICS)
-    public void testNativeAllocationMallocSharedRegistryWithMetrics() {
+    public void ignoreNativeAllocationMallocSharedRegistryWithMetrics() {
         testNativeAllocation(new TestConfig(true, true, true));
     }
 
