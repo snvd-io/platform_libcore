@@ -40,6 +40,7 @@ import libcore.junit.util.compat.CoreCompatChangeRule.EnableCompatChanges;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
@@ -871,6 +872,7 @@ public class TimerTest {
     // Android-changed: b/351566728 added this test case to test new behavior.
     @DisableCompatChanges({Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     @Test
+    @Ignore("Disable this test on CTS 15 due to the NoSuchMethodError of skipMultipleMissedPeriodicTasks() b/362419059")
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_oldBehavior() throws Exception {
         assertFalse(Timer.skipMultipleMissedPeriodicTasks());
         Timer t = null;
@@ -915,6 +917,7 @@ public class TimerTest {
     // Android-changed: b/351566728 added this test case to test new behavior.
     @EnableCompatChanges({Timer.SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     @Test
+    @Ignore("Disable this test on CTS 15 due to the NoSuchMethodError of skipMultipleMissedPeriodicTasks() b/362419059")
     public void test_scheduleAtFixedRateLjava_util_TimerTaskJJ_SkipMultipleMissedFixedRateTasks_newBehavior() throws Exception {
         assertTrue(Timer.skipMultipleMissedPeriodicTasks());
         Timer t = null;
