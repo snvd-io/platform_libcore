@@ -227,6 +227,11 @@ public class ScheduledExecutorTest extends JSR166TestCase {
     @EnableCompatChanges({ScheduledThreadPoolExecutor.STPE_SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     public void testFixedRateSequenceSkipMultipleMissedFixedRateTasksEnabled()
             throws InterruptedException {
+        // Disable this test on CTS 15 due to the NoSuchMethodError of
+        // skipMultipleMissedPeriodicTasks() http://b/362449831
+        if (true) {
+            return;
+        }
         if (!ScheduledThreadPoolExecutor.skipMultipleMissedPeriodicTasks()) {
             // Failed to disable compat flag. Skip the test.
             return;
@@ -285,6 +290,11 @@ public class ScheduledExecutorTest extends JSR166TestCase {
     @DisableCompatChanges({ScheduledThreadPoolExecutor.STPE_SKIP_MULTIPLE_MISSED_PERIODIC_TASKS})
     public void testFixedRateSequenceSkipMultipleMissedFixedRateTasksDisabled()
             throws InterruptedException {
+        // Disable this test on CTS 15 due to the NoSuchMethodError of
+        // skipMultipleMissedPeriodicTasks() http://b/362449831
+        if (true) {
+            return;
+        }
         if (ScheduledThreadPoolExecutor.skipMultipleMissedPeriodicTasks()) {
             // Failed to disable compat flag. Skip the test.
             return;

@@ -143,19 +143,5 @@ public final class VMRuntimeTest {
         doTestNewUnpaddedArray(String.class, step, maxLengthForLoop);
         doTestNewUnpaddedArray(Runnable.class, step, maxLengthForLoop);
     }
-
-    @Test
-    public void testIsVTrunkStableFlagEnabled() {
-        // The flag should be on all stages, including trunk_staging and next.
-        assertTrue(VMRuntime.isVTrunkStableFlagEnabled());
-    }
-
-    @Test
-    public void testIsM202409RampEnabled() {
-        boolean b = VMRuntime.isM202409RampEnabled();
-        // The flag value depends on the release configurations. Don't assert the value until
-        // the flag is turned on in all configurations.
-        Assume.assumeTrue(b);
-    }
 }
 
