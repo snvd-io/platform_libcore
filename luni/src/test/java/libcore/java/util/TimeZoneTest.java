@@ -222,7 +222,8 @@ public class TimeZoneTest extends TestCaseWithRules {
         assertEquals("GMT", TimeZone.getTimeZone("GMT+05:99").getID());
         assertEquals("GMT", TimeZone.getTimeZone("GMT+28:00").getID());
         assertEquals("GMT", TimeZone.getTimeZone("GMT+05:00.00").getID());
-        assertEquals("GMT", TimeZone.getTimeZone("GMT+05:00:00").getID());
+        // 24q4 can handle format with seconds.
+        // assertEquals("GMT", TimeZone.getTimeZone("GMT+05:00:00").getID());
         assertEquals("GMT", TimeZone.getTimeZone("GMT+5:").getID());
         assertEquals("GMT", TimeZone.getTimeZone("GMT+junk").getID());
         assertEquals("GMT", TimeZone.getTimeZone("GMT+5junk").getID());
