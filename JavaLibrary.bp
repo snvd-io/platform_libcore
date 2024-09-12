@@ -293,6 +293,7 @@ java_library {
     visibility: [
         "//art/build/apex",
         "//art/build/sdk",
+        "//art/tools/ahat",
         "//art/tools/fuzzer",
         "//external/wycheproof",
         "//libcore/benchmarks",
@@ -356,6 +357,7 @@ java_library {
     visibility: [
         "//art/build/apex",
         "//art/build/sdk",
+        "//art/tools/ahat",
         "//art/tools/fuzzer",
         "//external/wycheproof",
         "//libcore/benchmarks",
