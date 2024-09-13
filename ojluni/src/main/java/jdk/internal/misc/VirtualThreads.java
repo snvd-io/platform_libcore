@@ -27,20 +27,21 @@ package jdk.internal.misc;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.RejectedExecutionException;
-import jdk.internal.access.JavaLangAccess;
-import jdk.internal.access.SharedSecrets;
 
 /**
  * Defines static methods to support execution in the context of a virtual thread.
+ *
+ * @hide
  */
 public final class VirtualThreads {
-    private static final JavaLangAccess JLA;
-    static {
-        JLA = SharedSecrets.getJavaLangAccess();
-        if (JLA == null) {
-            throw new InternalError("JavaLangAccess not setup");
-        }
-    }
+    // Android-removed: Not used in Android.
+    // private static final JavaLangAccess JLA;
+    // static {
+    //     JLA = SharedSecrets.getJavaLangAccess();
+    //     if (JLA == null) {
+    //         throw new InternalError("JavaLangAccess not setup");
+    //     }
+    // }
     private VirtualThreads() { }
 
     /**
@@ -51,7 +52,8 @@ public final class VirtualThreads {
      * @throws WrongThreadException if the current thread is not a virtual thread
      */
     public static void park() {
-        JLA.parkVirtualThread();
+        // Android-removed: Not used in Android.
+        // JLA.parkVirtualThread();
     }
 
     /**
@@ -64,7 +66,8 @@ public final class VirtualThreads {
      * @throws WrongThreadException if the current thread is not a virtual thread
      */
     public static void park(long nanos) {
-        JLA.parkVirtualThread(nanos);
+        // Android-removed: Not used in Android.
+        // JLA.parkVirtualThread(nanos);
     }
 
     /**
@@ -77,9 +80,10 @@ public final class VirtualThreads {
      * @throws WrongThreadException if the current thread is not a virtual thread
      */
     public static void parkUntil(long deadline) {
-        long millis = deadline - System.currentTimeMillis();
-        long nanos = TimeUnit.NANOSECONDS.convert(millis, TimeUnit.MILLISECONDS);
-        park(nanos);
+        // Android-removed: Not used in Android.
+        // long millis = deadline - System.currentTimeMillis();
+        // long nanos = TimeUnit.NANOSECONDS.convert(millis, TimeUnit.MILLISECONDS);
+        // park(nanos);
     }
 
     /**
@@ -90,6 +94,7 @@ public final class VirtualThreads {
      * @throws RejectedExecutionException if the scheduler cannot accept a task
      */
     public static void unpark(Thread thread) {
-        JLA.unparkVirtualThread(thread);
+        // Android-removed: Not used in Android.
+        // JLA.unparkVirtualThread(thread);
     }
 }
