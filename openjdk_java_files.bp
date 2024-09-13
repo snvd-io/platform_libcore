@@ -1554,6 +1554,7 @@ filegroup {
         "ojluni/src/main/java/jdk/internal/misc/Unsafe.java",
         "ojluni/src/main/java/jdk/internal/misc/UnsafeConstants.java",
         "ojluni/src/main/java/jdk/internal/misc/VM.java",
+        "ojluni/src/main/java/jdk/internal/misc/VirtualThreads.java",
         "ojluni/src/main/java/jdk/internal/ref/Cleaner.java",
         "ojluni/src/main/java/jdk/internal/ref/CleanerFactory.java",
         "ojluni/src/main/java/jdk/internal/ref/CleanerImpl.java",
