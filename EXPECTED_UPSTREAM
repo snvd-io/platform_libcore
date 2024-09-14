@@ -1101,11 +1101,11 @@ ojluni/src/main/java/java/util/concurrent/atomic/LongAdder.java,jdk21u/jdk-21.0.
 ojluni/src/main/java/java/util/concurrent/atomic/Striped64.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/concurrent/atomic/Striped64.java
 ojluni/src/main/java/java/util/concurrent/atomic/package-info.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/concurrent/atomic/package-info.java
 ojluni/src/main/java/java/util/concurrent/locks/AbstractOwnableSynchronizer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/AbstractOwnableSynchronizer.java
-ojluni/src/main/java/java/util/concurrent/locks/AbstractQueuedLongSynchronizer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedLongSynchronizer.java
-ojluni/src/main/java/java/util/concurrent/locks/AbstractQueuedSynchronizer.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedSynchronizer.java
+ojluni/src/main/java/java/util/concurrent/locks/AbstractQueuedLongSynchronizer.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedLongSynchronizer.java
+ojluni/src/main/java/java/util/concurrent/locks/AbstractQueuedSynchronizer.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedSynchronizer.java
 ojluni/src/main/java/java/util/concurrent/locks/Condition.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/Condition.java
 ojluni/src/main/java/java/util/concurrent/locks/Lock.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/Lock.java
-ojluni/src/main/java/java/util/concurrent/locks/LockSupport.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/LockSupport.java
+ojluni/src/main/java/java/util/concurrent/locks/LockSupport.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/java/util/concurrent/locks/LockSupport.java
 ojluni/src/main/java/java/util/concurrent/locks/ReadWriteLock.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/ReadWriteLock.java
 ojluni/src/main/java/java/util/concurrent/locks/ReentrantLock.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/ReentrantLock.java
 ojluni/src/main/java/java/util/concurrent/locks/ReentrantReadWriteLock.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/java/util/concurrent/locks/ReentrantReadWriteLock.java
@@ -1429,6 +1429,7 @@ ojluni/src/main/java/jdk/internal/misc/TerminatingThreadLocal.java,jdk17u/jdk-17
 ojluni/src/main/java/jdk/internal/misc/Unsafe.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/misc/Unsafe.java
 ojluni/src/main/java/jdk/internal/misc/UnsafeConstants.java,jdk17u/jdk-17.0.6-ga,src/java.base/share/classes/jdk/internal/misc/UnsafeConstants.java
 ojluni/src/main/java/jdk/internal/misc/VM.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/jdk/internal/misc/VM.java
+ojluni/src/main/java/jdk/internal/misc/VirtualThreads.java,jdk21u/jdk-21.0.2-ga,src/java.base/share/classes/jdk/internal/misc/VirtualThreads.java
 ojluni/src/main/java/jdk/internal/ref/Cleaner.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/jdk/internal/ref/Cleaner.java
 ojluni/src/main/java/jdk/internal/ref/CleanerFactory.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/jdk/internal/ref/CleanerFactory.java
 ojluni/src/main/java/jdk/internal/ref/CleanerImpl.java,jdk11u/jdk-11.0.13-ga,src/java.base/share/classes/jdk/internal/ref/CleanerImpl.java

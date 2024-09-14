@@ -1019,6 +1019,21 @@ class Thread implements Runnable {
     }
 
     /**
+     * Returns {@code true} if this thread is a virtual thread. A virtual thread
+     * is scheduled by the Java virtual machine rather than the operating system.
+     *
+     * @return {@code true} if this thread is a virtual thread
+     *
+     * @since 21
+     * @hide
+     */
+    public final boolean isVirtual() {
+        // Android-changed: Virtual threads are not supported in Android.
+        // return (this instanceof BaseVirtualThread);
+        return false;
+    }
+
+    /**
      * Causes this thread to begin execution; the Java Virtual Machine
      * calls the {@code run} method of this thread.
      * <p>
@@ -2087,6 +2102,19 @@ class Thread implements Runnable {
      * @since 1.5
      */
     public long getId() {
+        return tid;
+    }
+
+    /**
+     * Returns the identifier of this Thread.  The thread ID is a positive
+     * {@code long} number generated when this thread was created.
+     * The thread ID is unique and remains unchanged during its lifetime.
+     *
+     * @return this thread's ID
+     * @since 19
+     * @hide
+     */
+    public final long threadId() {
         return tid;
     }
 
