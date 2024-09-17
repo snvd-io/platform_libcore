@@ -106,7 +106,8 @@ SocketOutputStream_socketWrite0(JNIEnv *env, jobject this,
             if (n == JVM_IO_INTR) {
                 JNU_ThrowByName(env, "java/io/InterruptedIOException", 0);
             } else {
-                if (errno == ECONNRESET) {
+                // Android-changed: Treat ECONNABORTED the same as ECONNRESET. b/358728705
+                if (errno == ECONNRESET || errno == ECONNABORTED) {
                     JNU_ThrowByName(env, "sun/net/ConnectionResetException",
                         "Connection reset");
                 } else {
