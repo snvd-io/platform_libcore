@@ -122,6 +122,8 @@ SocketInputStream_socketRead0(JNIEnv *env, jobject this,
         if (nread < 0) {
 
             switch (errno) {
+                // Android-changed: Treat ECONNABORTED the same as ECONNRESET. b/358728705
+                case ECONNABORTED:
                 case ECONNRESET:
                 case EPIPE:
                     JNU_ThrowByName(env, "sun/net/ConnectionResetException",
