@@ -847,7 +847,12 @@ java_test {
             "-Xep:RandomModInteger:WARN",
             "-Xep:IdentityBinaryExpression:WARN",
             "-Xep:UnnecessaryStringBuilder:OFF", // https://github.com/google/error-prone/issues/4195
-            "-Xep:InvalidPatternSyntax:WARN",
+            // Some of the invalid regexes in the tests cause java to throw
+            // an exception that contains a null byte. The null byte is then
+            // printed by errorprone to the build log, causing some tools to
+            // think the build log is a binary file. Disable instead of demoting
+            // to a warning.
+            "-Xep:InvalidPatternSyntax:OFF",
         ],
     },
 
